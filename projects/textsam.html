@@ -86,7 +86,11 @@
 
     .section ul {
       margin: 0;
-      padding-left: 20px;
+      padding-left: 22px;
+    }
+
+    .section li {
+      margin-bottom: 8px;
     }
 
     .gallery {
@@ -131,7 +135,7 @@
       <div class="hero-content">
         <h1>Detect Objects with TextSAM</h1>
         <p>
-          Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+          Prompt-based object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
         </p>
       </div>
     </div>
@@ -139,19 +143,36 @@
     <div class="section">
       <h2>Overview</h2>
       <p>
-        This project demonstrates how a prompt-based GeoAI model can be used to detect objects in aerial imagery.
-        The workflow was completed in ArcGIS Pro using the TextSAM model.
+        This project explores prompt-based object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+        The objective was to automatically detect boats in a marina environment and convert the detections into vector features that can be used in GIS workflows.
       </p>
     </div>
 
     <div class="section">
-      <h2>Workflow</h2>
+      <h2>Study Area &amp; Data</h2>
+      <p>
+        High-resolution aerial imagery of a coastal harbor area was used as the input dataset. The imagery contains multiple boats
+        located along docks and marina structures, allowing individual vessels to be distinguished from surrounding water surfaces.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Detection Workflow</h2>
       <ul>
-        <li>Prepared the imagery in ArcGIS Pro.</li>
-        <li>Applied the TextSAM model for object detection.</li>
-        <li>Generated initial detection results.</li>
-        <li>Refined the output through post-processing.</li>
+        <li>Prepared and loaded the aerial imagery in ArcGIS Pro.</li>
+        <li>Ran TextSAM inference using a text prompt describing the target object.</li>
+        <li>Generated candidate detection polygons from the model output.</li>
+        <li>Converted the detections into vector features for further analysis.</li>
       </ul>
+    </div>
+
+    <div class="section">
+      <h2>Detection Strategy</h2>
+      <p>
+        To improve detection accuracy, the output was refined after the initial inference step. Detections were filtered based on
+        confidence levels, and very small geometries were removed to reduce false positives. This post-processing step helped produce
+        a cleaner and more reliable output layer for GIS use.
+      </p>
     </div>
 
     <div class="section">
@@ -159,7 +180,7 @@
       <ul>
         <li>ArcGIS Pro</li>
         <li>TextSAM</li>
-        <li>Deep Learning tools</li>
+        <li>Deep Learning tools (ArcGIS)</li>
         <li>Image analysis</li>
         <li>Vector feature extraction</li>
       </ul>
@@ -167,11 +188,16 @@
 
     <div class="section">
       <h2>Results</h2>
+      <p style="margin-bottom: 20px;">
+        The final detection layer successfully identified most boats located within the marina area. The comparison between the initial
+        detection and the refined output highlights the importance of confidence filtering and post-processing in GeoAI object detection workflows.
+      </p>
+
       <div class="gallery">
 
         <div class="gallery-item">
           <img src="../images/textsam-boat-detection/input imagery.png" alt="Input imagery">
-          <div class="caption">Input aerial imagery used for detection.</div>
+          <div class="caption">Input aerial imagery used for object detection.</div>
         </div>
 
         <div class="gallery-item">
@@ -181,7 +207,7 @@
 
         <div class="gallery-item">
           <img src="../images/textsam-boat-detection/refined-detection.png" alt="Refined detection">
-          <div class="caption">Refined detection results after post-processing.</div>
+          <div class="caption">Refined detection results after confidence-based filtering and post-processing.</div>
         </div>
 
       </div>
