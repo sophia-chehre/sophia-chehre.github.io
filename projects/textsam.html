@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detect Objects with TextSAM</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+      line-height: 1.7;
+    }
+
+    .topbar {
+      background: #111827;
+      padding: 18px 24px;
+    }
+
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-bottom: 32px;
+    }
+
+    .hero img {
+      width: 100%;
+      display: block;
+      max-height: 420px;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      padding: 28px;
+    }
+
+    .hero-content h1 {
+      margin: 0 0 14px;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      margin: 0;
+      font-size: 18px;
+      color: #374151;
+    }
+
+    .section {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+
+    .section p {
+      margin: 0;
+    }
+
+    .section ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #4b5563;
+    }
+
+    @media (max-width: 800px) {
+      .hero-content h1 {
+        font-size: 30px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html">← Back to Portfolio</a>
+  </div>
+
+  <div class="container">
+
+    <div class="hero">
+      <img src="../images/textsam-boat-detection/textsam-cover.png" alt="Detect Objects with TextSAM">
+      <div class="hero-content">
+        <h1>Detect Objects with TextSAM</h1>
+        <p>
+          Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>
+        This project demonstrates how a prompt-based GeoAI model can be used to detect objects in aerial imagery.
+        The workflow was completed in ArcGIS Pro using the TextSAM model.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Workflow</h2>
+      <ul>
+        <li>Prepared the imagery in ArcGIS Pro.</li>
+        <li>Applied the TextSAM model for object detection.</li>
+        <li>Generated initial detection results.</li>
+        <li>Refined the output through post-processing.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Tools Used</h2>
+      <ul>
+        <li>ArcGIS Pro</li>
+        <li>TextSAM</li>
+        <li>Deep Learning tools</li>
+        <li>Image analysis</li>
+        <li>Vector feature extraction</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Results</h2>
+      <div class="gallery">
+
+        <div class="gallery-item">
+          <img src="../images/textsam-boat-detection/input imagery.png" alt="Input imagery">
+          <div class="caption">Input aerial imagery used for detection.</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="../images/textsam-boat-detection/boat detection.png" alt="Initial detection">
+          <div class="caption">Initial object detection results generated with TextSAM.</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="../images/textsam-boat-detection/refined-detection.png" alt="Refined detection">
+          <div class="caption">Refined detection results after post-processing.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
