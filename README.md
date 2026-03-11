@@ -17,8 +17,11 @@ The projects focus on:
 
 ## Projects
 
-1. Boat Detection with TextSAM  
+### 1. Boat Detection with TextSAM
+
 Deep learning object detection applied to aerial imagery.
+
+![](images/textsam-boat-detection/boat%20detection.png)
 
 2. Palm Tree Detection with a Pretrained Model  
 Object detection using pretrained deep learning models.
