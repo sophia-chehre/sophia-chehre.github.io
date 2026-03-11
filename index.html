@@ -1,111 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GeoAI & GIS Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoAI & GIS Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+    }
 
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#f5f5f5;
-}
+    .hero {
+      background: linear-gradient(135deg, #1f2937, #111827);
+      color: white;
+      text-align: center;
+      padding: 64px 20px 48px;
+    }
 
-.header{
-background:#1f2933;
-color:white;
-padding:40px;
-text-align:center;
-}
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+    }
 
-.projects{
-max-width:1000px;
-margin:auto;
-padding:40px;
-}
+    .hero .name {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
 
-.projects h2{
-text-align:center;
-margin-bottom:40px;
-}
+    .hero .subtitle {
+      font-size: 18px;
+      color: #d1d5db;
+      margin: 0;
+    }
 
-.project-card{
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-margin-bottom:30px;
-}
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
 
-.project-card img{
-width:100%;
-}
+    .section h2 {
+      text-align: center;
+      font-size: 34px;
+      margin-top: 0;
+      margin-bottom: 36px;
+    }
 
-.project-content{
-padding:20px;
-}
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
 
-.project-content h3{
-margin-top:0;
-}
+    .project-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-.button{
-display:inline-block;
-margin-top:10px;
-padding:10px 15px;
-background:#2563eb;
-color:white;
-text-decoration:none;
-border-radius:5px;
-}
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
 
-.button:hover{
-background:#1d4ed8;
-}
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
 
-</style>
+    .project-content {
+      padding: 20px;
+    }
 
+    .project-content h3 {
+      margin: 0 0 12px;
+      font-size: 26px;
+    }
+
+    .project-content p {
+      margin: 0 0 16px;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      background: #e5e7eb;
+      color: #111827;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    @media (max-width: 900px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .project-content h3 {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
-
-
 <body>
 
-<div class="header">
-<h1>GeoAI & GIS Portfolio</h1>
-<p>Sophia Chehreghan</p>
-<p>Urban Planner | Spatial Analysis | GeoAI</p>
-</div>
+  <header class="hero">
+    <h1>GeoAI & GIS Portfolio</h1>
+    <div class="name">Sophia (Zahra) Chehreghan</div>
+    <p class="subtitle">Urban Planner | Spatial Analysis | GeoAI</p>
+  </header>
 
+  <section class="section">
+    <h2>Projects</h2>
 
-<div class="projects">
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="images/textsam-boat-detection/boat detection.png" alt="Boat Detection with TextSAM" />
 
-<h2>Projects</h2>
+        <div class="project-content">
+          <h3>Boat Detection with TextSAM</h3>
+          <p>
+            Deep learning object detection applied to high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+          </p>
 
+          <div class="tags">
+            <span class="tag">ArcGIS Pro</span>
+            <span class="tag">GeoAI</span>
+            <span class="tag">Object Detection</span>
+          </div>
 
-<div class="project-card">
-
-<img src="images/textsam-boat-detection/boat detection.png">
-
-<div class="project-content">
-
-<h3>Boat Detection with TextSAM</h3>
-
-<p>
-Deep learning object detection applied to high-resolution aerial imagery
-using the TextSAM model in ArcGIS Pro.
-</p>
-
-<a class="button" href="#">View Project</a>
-
-</div>
-
-</div>
-
-
-</div>
+          <a class="button" href="#">View Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
