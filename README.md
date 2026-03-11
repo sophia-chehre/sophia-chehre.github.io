@@ -17,19 +17,19 @@ The projects focus on:
 
 ## Projects
 
-### 1. Detect Objects with TextSAM
+1. Boat Detection with TextSAM  
 Deep learning object detection applied to aerial imagery.
 
-### 2. Detect Objects with a Pretrained Model
+2. Palm Tree Detection with a Pretrained Model  
 Object detection using pretrained deep learning models.
 
-### 3. Improve a Deep Learning Model with Transfer Learning
-Training and fine-tuning a model for building footprint detection.
+3. Building Footprint Extraction with Transfer Learning  
+Training and fine-tuning a deep learning model for building detection.
 
-### 4. Extract High-Resolution Land Cover with GeoAI
+4. High-Resolution Land Cover Segmentation  
 Semantic segmentation of high-resolution imagery.
 
-### 5. Identify Infrastructure at Risk of Landslides
+5. Landslide Risk Analysis  
 Spatial analysis combining terrain and infrastructure data.
 
 ## Project 1 — Boat Detection with TextSAM
