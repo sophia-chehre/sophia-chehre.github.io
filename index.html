@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GeoAI & GIS Portfolio</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -14,17 +15,18 @@
       font-family: Arial, sans-serif;
       background: #f3f4f6;
       color: #111827;
+      line-height: 1.6;
     }
 
     .hero {
       background: linear-gradient(135deg, #1f2937, #111827);
       color: white;
       text-align: center;
-      padding: 64px 20px 48px;
+      padding: 72px 20px 56px;
     }
 
     .hero h1 {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       font-size: 42px;
     }
 
@@ -35,70 +37,99 @@
     }
 
     .hero .subtitle {
+      margin: 0;
       font-size: 18px;
       color: #d1d5db;
-      margin: 0;
     }
 
     .section {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 48px 24px;
+      padding: 56px 24px 80px;
     }
 
-    .section h2 {
+    .section-title {
       text-align: center;
       font-size: 34px;
-      margin-top: 0;
-      margin-bottom: 36px;
+      margin: 0 0 48px;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
     }
 
     .project-card {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
       background: white;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      min-height: 320px;
+    }
+
+    .project-card.reverse .project-image {
+      order: 2;
+    }
+
+    .project-card.reverse .project-content {
+      order: 1;
+    }
+
+    .project-image {
+      background: #dfe4ea;
     }
 
     .project-image img {
       width: 100%;
       height: 100%;
-      min-height: 320px;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
+      min-height: 320px;
     }
 
     .project-content {
-      padding: 32px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
+    .project-number {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #2563eb;
+      margin-bottom: 12px;
+    }
+
     .project-content h3 {
       margin: 0 0 16px;
-      font-size: 30px;
+      font-size: 32px;
       line-height: 1.2;
     }
 
     .project-content p {
-      margin: 0 0 22px;
-      line-height: 1.7;
-      color: #374151;
+      margin: 0 0 24px;
       font-size: 17px;
+      color: #374151;
+      max-width: 520px;
     }
 
     .button {
       display: inline-block;
+      width: fit-content;
       text-decoration: none;
       background: #2563eb;
       color: white;
       padding: 12px 18px;
       border-radius: 10px;
       font-weight: 600;
-      width: fit-content;
+      transition: background 0.2s ease;
     }
 
     .button:hover {
@@ -106,12 +137,26 @@
     }
 
     @media (max-width: 900px) {
-      .project-card {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .project-card,
+      .project-card.reverse {
         grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        font-size: 34px;
+      .project-card.reverse .project-image,
+      .project-card.reverse .project-content {
+        order: initial;
+      }
+
+      .project-image img {
+        min-height: 220px;
       }
 
       .project-content {
@@ -120,10 +165,6 @@
 
       .project-content h3 {
         font-size: 24px;
-      }
-
-      .project-image img {
-        min-height: 220px;
       }
     }
   </style>
@@ -137,21 +178,70 @@
   </header>
 
   <section class="section">
-    <h2>Projects</h2>
+    <h2 class="section-title">Projects</h2>
 
-    <div class="project-card">
-      <div class="project-image">
-        <img src="images/textsam-boat-detection/boat detection.png" alt="Detect Objects with TextSAM">
-      </div>
+    <div class="project-list">
 
-      <div class="project-content">
-        <h3>Detect Objects with TextSAM</h3>
-        <p>
-          Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
-        </p>
+      <article class="project-card">
+        <div class="project-image">
+          <img src="images/textsam-boat-detection/textsam-cover.png" alt="Detect Objects with TextSAM">
+        </div>
 
-        <a class="button" href="#">View Project</a>
-      </div>
+        <div class="project-content">
+          <div class="project-number">Project 01</div>
+          <h3>Detect Objects with TextSAM</h3>
+          <p>
+            Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+          </p>
+          <a class="button" href="projects/textsam.html">View Project</a>
+        </div>
+      </article>
+
+      <article class="project-card reverse">
+        <div class="project-image">
+          <img src="images/palm-detection/palm-cover.png" alt="Detect Objects with a Deep Learning Pretrained Model">
+        </div>
+
+        <div class="project-content">
+          <div class="project-number">Project 02</div>
+          <h3>Detect Objects with a Deep Learning Pretrained Model</h3>
+          <p>
+            Automated object detection using a pretrained deep learning model in ArcGIS Pro.
+          </p>
+          <a class="button" href="projects/palm.html">View Project</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-image">
+          <img src="images/transfer-learning/building-cover.png" alt="Improve a Deep Learning Model with Transfer Learning">
+        </div>
+
+        <div class="project-content">
+          <div class="project-number">Project 03</div>
+          <h3>Improve a Deep Learning Model with Transfer Learning</h3>
+          <p>
+            Fine-tuning a deep learning model to improve building footprint detection results.
+          </p>
+          <a class="button" href="projects/transfer-learning.html">View Project</a>
+        </div>
+      </article>
+
+      <article class="project-card reverse">
+        <div class="project-image">
+          <img src="images/landcover-segmentation/landcover-cover.png" alt="Extract High-Resolution Land Cover with GeoAI">
+        </div>
+
+        <div class="project-content">
+          <div class="project-number">Project 04</div>
+          <h3>Extract High-Resolution Land Cover with GeoAI</h3>
+          <p>
+            High-resolution land cover mapping using semantic segmentation workflows in ArcGIS Pro.
+          </p>
+          <a class="button" href="projects/landcover.html">View Project</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
