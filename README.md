@@ -1,8 +1,17 @@
-# GIS & GeoAI Portfolio
+# GeoAI & GIS Portfolio
 
-Sophia (Zahra) Chehreghan
+**Sophia Chehreghan**
 
-Projects completed using ArcGIS Pro and GeoAI workflows.
+Urban Planner | Spatial Analysis | GeoAI
+
+This portfolio presents a collection of GeoAI and GIS projects developed using ArcGIS Pro, deep learning models, and spatial analysis workflows.
+
+The projects focus on:
+
+- Object detection in aerial imagery
+- Deep learning for geospatial analysis
+- Image segmentation
+- Spatial risk analysis
 
 ---
 
