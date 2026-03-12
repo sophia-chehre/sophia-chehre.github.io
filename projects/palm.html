@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detect Objects with a Deep Learning Pretrained Model</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+      line-height: 1.7;
+    }
+
+    .topbar {
+      background: #111827;
+      padding: 18px 24px;
+    }
+
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-bottom: 32px;
+    }
+
+    .hero img {
+      width: 100%;
+      display: block;
+      max-height: 420px;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      padding: 28px;
+    }
+
+    .hero-content h1 {
+      margin: 0 0 14px;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      margin: 0;
+      font-size: 18px;
+      color: #374151;
+    }
+
+    .section {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+
+    .section p {
+      margin: 0;
+    }
+
+    .section ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .section li {
+      margin-bottom: 8px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #4b5563;
+    }
+
+    @media (max-width: 800px) {
+      .hero-content h1 {
+        font-size: 30px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html">← Back to Portfolio</a>
+  </div>
+
+  <div class="container">
+
+    <div class="hero">
+      <img src="../images/palm-detection/palm-cover.png" alt="Detect Objects with a Deep Learning Pretrained Model">
+      <div class="hero-content">
+        <h1>Detect Objects with a Deep Learning Pretrained Model</h1>
+        <p>
+          Automated palm tree detection in high-resolution aerial imagery using a pretrained deep learning model in ArcGIS Pro.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>
+        This project demonstrates object detection using a pretrained deep learning model in ArcGIS Pro. The goal was to automatically detect palm trees in high-resolution aerial imagery and generate a feature layer representing the detected objects.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Study Area &amp; Data</h2>
+      <p>
+        The workflow used high-resolution RGB aerial imagery of Kolovai. The imagery contains vegetation patterns, agricultural plots, and clusters of palm trees, making it suitable for pretrained object detection.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Detection Workflow</h2>
+      <ul>
+        <li>Loaded Kolovai imagery in ArcGIS Pro.</li>
+        <li>Applied a pretrained Palm Tree Detection model from ArcGIS Living Atlas.</li>
+        <li>Executed the Detect Objects Using Deep Learning tool.</li>
+        <li>Generated bounding boxes representing detected palm trees.</li>
+        <li>Exported the detections as a feature class for further GIS analysis.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Detection Settings</h2>
+      <p>
+        The detection was run with the pretrained model using the default workflow in ArcGIS Pro, including confidence-based filtering and Non Maximum Suppression (NMS) to reduce overlapping detections. During troubleshooting, system decimal formatting had to be corrected to ensure the model parameters were interpreted properly.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Tools Used</h2>
+      <ul>
+        <li>ArcGIS Pro</li>
+        <li>ArcGIS Living Atlas</li>
+        <li>Detect Objects Using Deep Learning</li>
+        <li>Pretrained object detection model</li>
+        <li>Raster analysis</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Results</h2>
+      <p style="margin-bottom: 20px;">
+        The model successfully detected a large number of palm trees across the study area. The resulting output demonstrates how pretrained deep learning models can be integrated into GIS workflows for automated feature extraction from imagery.
+      </p>
+
+      <div class="gallery">
+
+        <div class="gallery-item">
+          <img src="../images/palm-detection/palm-input.png" alt="Input imagery">
+          <div class="caption">High-resolution aerial imagery used as input for palm tree detection.</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="../images/palm-detection/palm-detection.png" alt="Palm detection result">
+          <div class="caption">Palm trees detected using a pretrained deep learning model in ArcGIS Pro.</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="../images/palm-detection/palm-closeup.png" alt="Palm detection close-up">
+          <div class="caption">Close-up view of detected palm trees represented as bounding boxes.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
