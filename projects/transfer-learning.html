@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transfer Learning for Building Detection</title>
 
   <style>
@@ -47,6 +46,16 @@
       display: block;
     }
 
+    .training-image {
+      max-width: 650px;
+      margin: 20px auto 0;
+    }
+
+    .training-image img {
+      width: 100%;
+      display: block;
+    }
+
     .button {
       display: inline-block;
       margin-top: 20px;
@@ -56,6 +65,7 @@
       padding: 12px 18px;
       border-radius: 10px;
       font-weight: 600;
+      transition: background 0.2s ease;
     }
 
     .button:hover {
@@ -68,67 +78,60 @@
       text-decoration: none;
       color: #2563eb;
       font-weight: 600;
-
-      .training-image {
-  max-width: 720px;
-  margin: 20px auto 0;
-      
     }
   </style>
-
 </head>
-
 <body>
-
   <div class="container">
 
-```
-<a class="back" href="../index.html">← Back to Portfolio</a>
+    <a class="back" href="../index.html">← Back to Portfolio</a>
 
-<h1>Building Extraction with Transfer Learning</h1>
+    <h1>Building Extraction with Transfer Learning</h1>
 
-<p>
-  This project focuses on improving building footprint detection using transfer learning in ArcGIS Pro.
-  A pretrained deep learning model was fine-tuned with custom training samples to enhance detection accuracy.
-</p>
+    <p>
+      This project focuses on improving building footprint detection using transfer learning in ArcGIS Pro.
+      A pretrained deep learning model was fine-tuned with custom training samples to improve extraction quality.
+    </p>
 
-<a class="button" href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756" target="_blank">
-  View Interactive Web App
-</a>
+    <a
+      class="button"
+      href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View Interactive Web App
+    </a>
 
-<h2>Input Data</h2>
-<div class="image">
-  <img src="../images/transfer-learning/input-imagery.png" />
-</div>
+    <h2>Input Data</h2>
+    <div class="image">
+      <img src="../images/transfer-learning/input-imagery.png" alt="Input imagery for transfer learning project" />
+    </div>
 
-<h2>RGB Extraction</h2>
-<div class="image">
-  <img src="../images/transfer-learning/rgb-extraction.png" />
-</div>
+    <h2>RGB Extraction</h2>
+    <div class="image">
+      <img src="../images/transfer-learning/rgb-extraction.png" alt="RGB extraction from source imagery" />
+    </div>
 
-<h2>Model Training</h2>
-<div class="image training-image">
-  <img src="../images/transfer-learning/training-process.png" />
-</div>
+    <h2>Training Samples</h2>
+    <div class="image">
+      <img src="../images/transfer-learning/training-samples.png" alt="Training samples used for transfer learning" />
+    </div>
 
-<h2>Before Transfer Learning</h2>
-<div class="image">
-  <img src="../images/transfer-learning/baseline-result.png" />
-</div>
+    <h2>Before Transfer Learning</h2>
+    <div class="image">
+      <img src="../images/transfer-learning/baseline-result.png" alt="Building detection result before transfer learning" />
+    </div>
 
-<h2>Model Training</h2>
-<div class="image">
-  <img src="../images/transfer-learning/training-process.png" />
-</div>
+    <h2>Model Training</h2>
+    <div class="image training-image">
+      <img src="../images/transfer-learning/training-process.png" alt="Model training process in ArcGIS Pro" />
+    </div>
 
-<h2>After Transfer Learning</h2>
-<div class="image">
-  <img src="../images/transfer-learning/final-result.png" />
-</div>
-```
+    <h2>After Transfer Learning</h2>
+    <div class="image">
+      <img src="../images/transfer-learning/final-result.png" alt="Building detection result after transfer learning" />
+    </div>
 
   </div>
-
 </body>
 </html>
-
