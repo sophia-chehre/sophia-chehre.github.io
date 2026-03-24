@@ -60,7 +60,6 @@
       gap: 36px;
     }
 
-    /* ✅ FIXED HEIGHT */
     .project-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -82,6 +81,8 @@
 
     .project-image {
       background: #dfe4ea;
+      width: 100%;
+      height: 100%;
     }
 
     .project-image img {
@@ -107,21 +108,17 @@
       margin-bottom: 12px;
     }
 
-    /* ✅ FIXED TITLE HEIGHT */
     .project-content h3 {
       margin: 0 0 16px;
       font-size: 32px;
       line-height: 1.2;
-      min-height: 76px;
     }
 
-    /* ✅ FIXED TEXT HEIGHT */
     .project-content p {
       margin: 0 0 24px;
       font-size: 17px;
       color: #374151;
       max-width: 520px;
-      min-height: 82px;
     }
 
     .button {
@@ -140,7 +137,6 @@
       background: #1d4ed8;
     }
 
-    /* 📱 RESPONSIVE */
     @media (max-width: 900px) {
       .hero h1 {
         font-size: 34px;
@@ -175,7 +171,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <header class="hero">
@@ -189,67 +184,77 @@
 
     <div class="project-list">
 
-      <!-- Project 01 -->
       <article class="project-card">
         <div class="project-image">
-          <img src="images/textsam-boat-detection/textsam-cover.png">
+          <img src="images/textsam-boat-detection/textsam-cover.png" alt="Detect Objects with TextSAM">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 01</div>
           <h3>Detect Objects with TextSAM</h3>
-          <p>Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.</p>
+          <p>
+            Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+          </p>
           <a class="button" href="projects/textsam.html">View Project</a>
         </div>
       </article>
 
-      <!-- Project 02 -->
       <article class="project-card reverse">
         <div class="project-image">
-          <img src="images/palm-detection/palm-thumbnail.png">
+          <img src="images/palm-detection/palm-thumbnail.png" alt="Detect Objects with a Deep Learning Pretrained Model">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 02</div>
           <h3>Detect Objects with a Deep Learning Pretrained Model</h3>
-          <p>Automated object detection using a pretrained deep learning model in ArcGIS Pro.</p>
+          <p>
+            Automated object detection using a pretrained deep learning model in ArcGIS Pro.
+          </p>
           <a class="button" href="projects/palm.html">View Project</a>
         </div>
       </article>
 
-      <!-- Project 03 -->
       <article class="project-card">
         <div class="project-image">
-          <img src="images/transfer-learning/building-thumbnail.png">
+          <img src="images/transfer-learning/building-thumbnail.png" alt="Improve a Deep Learning Model with Transfer Learning">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 03</div>
           <h3>Improve a Deep Learning Model with Transfer Learning</h3>
-          <p>Fine-tuning a deep learning model to improve building footprint detection results.</p>
+          <p>
+            Fine-tuning a deep learning model to improve building footprint detection results.
+          </p>
           <a class="button" href="projects/transfer-learning.html">View Project</a>
         </div>
       </article>
 
-      <!-- Project 04 -->
       <article class="project-card reverse">
         <div class="project-image">
-          <img src="images/landcover-segmentation/landcover-cover.png">
+          <img src="images/landcover-segmentation/landcover-cover.png" alt="Extract High-Resolution Land Cover with GeoAI">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 04</div>
           <h3>Extract High-Resolution Land Cover with GeoAI</h3>
-          <p>High-resolution land cover mapping using semantic segmentation workflows in ArcGIS Pro.</p>
+          <p>
+            High-resolution land cover mapping using semantic segmentation workflows in ArcGIS Pro.
+          </p>
           <a class="button" href="projects/landcover.html">View Project</a>
         </div>
       </article>
 
-      <!-- Project 05 -->
       <article class="project-card">
         <div class="project-image">
-          <img src="images/landslide-analysis/landslide-thumbnail.png">
+          <img src="images/landslide-analysis/landslide-thumbnail.png" alt="Identify Infrastructure at Risk of Landslides">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 05</div>
           <h3>Identify Infrastructure at Risk of Landslides</h3>
-          <p>Building extraction and raster-based landslide susceptibility analysis in ArcGIS Online to identify exposed structures.</p>
+          <p>
+            Building extraction and raster-based landslide susceptibility analysis in ArcGIS Online to identify exposed structures.
+          </p>
           <a class="button" href="projects/landslide.html">View Project</a>
         </div>
       </article>
