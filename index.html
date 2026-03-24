@@ -57,7 +57,7 @@
     .project-list {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 28px;
     }
 
     .project-card {
@@ -68,7 +68,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      height: 360px;
+      min-height: 280px;
     }
 
     .project-card.reverse .project-image {
@@ -81,8 +81,7 @@
 
     .project-image {
       background: #dfe4ea;
-      width: 100%;
-      height: 100%;
+      min-height: 280px;
     }
 
     .project-image img {
@@ -93,10 +92,11 @@
     }
 
     .project-content {
-      padding: 40px;
+      padding: 34px 40px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
     .project-number {
@@ -105,17 +105,17 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: #2563eb;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .project-content h3 {
-      margin: 0 0 16px;
-      font-size: 32px;
-      line-height: 1.2;
+      margin: 0 0 14px;
+      font-size: 30px;
+      line-height: 1.15;
     }
 
     .project-content p {
-      margin: 0 0 24px;
+      margin: 0 0 22px;
       font-size: 17px;
       color: #374151;
       max-width: 520px;
@@ -123,7 +123,6 @@
 
     .button {
       display: inline-block;
-      width: fit-content;
       text-decoration: none;
       background: #2563eb;
       color: white;
@@ -149,7 +148,6 @@
       .project-card,
       .project-card.reverse {
         grid-template-columns: 1fr;
-        height: auto;
       }
 
       .project-card.reverse .project-image,
@@ -157,7 +155,7 @@
         order: initial;
       }
 
-      .project-image img {
+      .project-image {
         min-height: 220px;
       }
 
