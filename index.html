@@ -60,7 +60,6 @@
       gap: 28px;
     }
 
-    /* همه کارت‌ها دقیقاً یک ارتفاع */
     .project-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -68,7 +67,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      height: 300px;
+      height: 290px;
     }
 
     .project-card.reverse .project-image {
@@ -93,12 +92,7 @@
     }
 
     .project-content {
-      height: 100%;
-      padding: 28px 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
+      padding: 26px 34px;
     }
 
     .project-number {
@@ -112,7 +106,7 @@
 
     .project-content h3 {
       margin: 0 0 14px;
-      font-size: 28px;
+      font-size: 30px;
       line-height: 1.15;
     }
 
@@ -132,7 +126,6 @@
       border-radius: 10px;
       font-weight: 600;
       transition: background 0.2s ease;
-      margin-top: auto;
     }
 
     .button:hover {
@@ -164,16 +157,11 @@
       }
 
       .project-content {
-        height: auto;
         padding: 24px;
       }
 
       .project-content h3 {
         font-size: 24px;
-      }
-
-      .button {
-        margin-top: 0;
       }
     }
   </style>
@@ -195,6 +183,7 @@
         <div class="project-image">
           <img src="images/textsam-boat-detection/textsam-cover.png" alt="Detect Objects with TextSAM">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 01</div>
           <h3>Detect Objects with TextSAM</h3>
@@ -209,6 +198,7 @@
         <div class="project-image">
           <img src="images/palm-detection/palm-thumbnail.png" alt="Detect Objects with a Deep Learning Pretrained Model">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 02</div>
           <h3>Detect Objects with a Deep Learning Pretrained Model</h3>
@@ -223,6 +213,7 @@
         <div class="project-image">
           <img src="images/transfer-learning/building-thumbnail.png" alt="Improve a Deep Learning Model with Transfer Learning">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 03</div>
           <h3>Improve a Deep Learning Model with Transfer Learning</h3>
@@ -237,6 +228,7 @@
         <div class="project-image">
           <img src="images/landcover-segmentation/landcover-cover.png" alt="Extract High-Resolution Land Cover with GeoAI">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 04</div>
           <h3>Extract High-Resolution Land Cover with GeoAI</h3>
@@ -251,6 +243,7 @@
         <div class="project-image">
           <img src="images/landslide-analysis/landslide-thumbnail.png" alt="Identify Infrastructure at Risk of Landslides">
         </div>
+
         <div class="project-content">
           <div class="project-number">Project 05</div>
           <h3>Identify Infrastructure at Risk of Landslides</h3>
