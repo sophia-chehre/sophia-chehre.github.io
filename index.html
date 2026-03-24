@@ -67,7 +67,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      height: 290px;
+      height: auto;
     }
 
     .project-card.reverse .project-image {
@@ -81,7 +81,7 @@
     .project-image {
       width: 100%;
       height: 100%;
-      background: #dfe4ea;
+      background: #e5e7eb;
     }
 
     .project-image img {
@@ -101,7 +101,14 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: #2563eb;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+    }
+
+    .project-category {
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b7280;
+      margin-bottom: 12px;
     }
 
     .project-content h3 {
@@ -166,12 +173,13 @@
     }
   </style>
 </head>
+
 <body>
 
   <header class="hero">
     <h1>GeoAI & GIS Portfolio</h1>
     <div class="name">Sophia (Zahra) Chehreghan</div>
-    <p class="subtitle">Urban Planner | Spatial Analysis | GeoAI</p>
+    <p class="subtitle">Urban Planner · Spatial Analysis · GeoAI</p>
   </header>
 
   <section class="section">
@@ -179,78 +187,93 @@
 
     <div class="project-list">
 
+      <!-- Project 01 -->
       <article class="project-card">
         <div class="project-image">
-          <img src="images/textsam-boat-detection/textsam-cover.png" alt="Detect Objects with TextSAM">
+          <img src="images/textsam-boat-detection/textsam-cover.png"
+               alt="High-resolution object detection using TextSAM in ArcGIS Pro">
         </div>
 
         <div class="project-content">
           <div class="project-number">Project 01</div>
+          <div class="project-category">GeoAI — Object Detection</div>
           <h3>Detect Objects with TextSAM</h3>
           <p>
-            Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
+            High‑resolution object detection using the TextSAM foundation model in ArcGIS Pro, demonstrating prompt‑based segmentation and automated feature extraction.
           </p>
-          <a class="button" href="projects/textsam.html">View Project</a>
+          <a class="button" href="projects/textsam.html" target="_blank">View Project</a>
         </div>
       </article>
 
+      <!-- Project 02 -->
       <article class="project-card reverse">
         <div class="project-image">
-          <img src="images/palm-detection/palm-thumbnail.png" alt="Detect Objects with a Deep Learning Pretrained Model">
+          <img src="images/palm-detection/palm-thumbnail.png"
+               alt="Palm tree detection using a pretrained deep learning model in ArcGIS Pro">
         </div>
 
         <div class="project-content">
           <div class="project-number">Project 02</div>
+          <div class="project-category">GeoAI — Object Detection</div>
           <h3>Detect Objects with a Deep Learning Pretrained Model</h3>
           <p>
-            Automated object detection using a pretrained deep learning model in ArcGIS Pro.
+            Automated object detection using a pretrained deep learning model, applying inference workflows for feature extraction in aerial imagery.
           </p>
-          <a class="button" href="projects/palm.html">View Project</a>
+          <a class="button" href="projects/palm.html" target="_blank">View Project</a>
         </div>
       </article>
 
+      <!-- Project 03 -->
       <article class="project-card">
         <div class="project-image">
-          <img src="images/transfer-learning/building-thumbnail.png" alt="Improve a Deep Learning Model with Transfer Learning">
+          <img src="images/transfer-learning/building-thumbnail.png"
+               alt="Building footprint detection improved with transfer learning in ArcGIS Pro">
         </div>
 
         <div class="project-content">
           <div class="project-number">Project 03</div>
+          <div class="project-category">GeoAI — Transfer Learning</div>
           <h3>Improve a Deep Learning Model with Transfer Learning</h3>
           <p>
-            Fine-tuning a deep learning model to improve building footprint detection results.
+            Fine‑tuning a pretrained Mask R‑CNN model to improve building footprint detection accuracy using custom training samples and deep learning workflows.
           </p>
-          <a class="button" href="projects/transfer-learning.html">View Project</a>
+          <a class="button" href="projects/transfer-learning.html" target="_blank">View Project</a>
         </div>
       </article>
 
+      <!-- Project 04 -->
       <article class="project-card reverse">
         <div class="project-image">
-          <img src="images/landcover-segmentation/landcover-cover.png" alt="Extract High-Resolution Land Cover with GeoAI">
+          <img src="images/landcover-segmentation/landcover-cover.png"
+               alt="High-resolution land cover extraction using semantic segmentation">
         </div>
 
         <div class="project-content">
           <div class="project-number">Project 04</div>
+          <div class="project-category">GeoAI — Semantic Segmentation</div>
           <h3>Extract High-Resolution Land Cover with GeoAI</h3>
           <p>
-            High-resolution land cover mapping using semantic segmentation workflows in ArcGIS Pro.
+            High‑resolution land cover mapping using semantic segmentation workflows in ArcGIS Pro, generating detailed classification outputs for environmental analysis.
           </p>
-          <a class="button" href="projects/landcover.html">View Project</a>
+          <a class="button" href="projects/landcover.html" target="_blank">View Project</a>
         </div>
       </article>
 
+      <!-- Project 05 -->
       <article class="project-card">
         <div class="project-image">
-          <img src="images/landslide-analysis/landslide-thumbnail.png" alt="Identify Infrastructure at Risk of Landslides">
+          <img src="images/landslide-analysis/landslide-thumbnail.png"
+               alt="Landslide susceptibility and infrastructure risk analysis in ArcGIS Online">
         </div>
 
         <div class="project-content">
           <div class="project-number">Project 05</div>
+          <div class="project-category">Risk Analysis — Spatial Modeling</div>
           <h3>Identify Infrastructure at Risk of Landslides</h3>
           <p>
-            Building extraction and raster-based landslide susceptibility analysis in ArcGIS Online to identify exposed structures.
+            Building extraction and raster‑based landslide susceptibility analysis to identify exposed structures and assess risk in mountainous regions.
           </p>
-          <a class="button" href="projects/landslide.html">View Project</a>
+          <a class="button" href="projects/landslide.html" target="_blank">View Project</a>
         </div>
       </article>
 
