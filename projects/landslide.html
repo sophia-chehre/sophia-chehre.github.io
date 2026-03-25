@@ -24,6 +24,14 @@
       padding: 48px 24px 80px;
     }
 
+    .back-link {
+      display: inline-block;
+      margin-bottom: 28px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 600;
+    }
+
     .hero {
       margin-bottom: 40px;
     }
@@ -175,6 +183,8 @@
 </head>
 <body>
   <div class="container">
+    <a class="back-link" href="../index.html">← Back to Portfolio</a>
+
     <section class="hero">
       <div class="project-label">Project 05</div>
       <h1>Identify Infrastructure at Risk of Landslides</h1>
@@ -276,6 +286,21 @@
     </section>
 
     <section class="section">
+      <h2>Building Detection Output</h2>
+      <p>
+        The workflow started with building extraction from aerial imagery using a pretrained deep learning model.
+        This step represents the GeoAI component of the project and produced the feature layer used in the final comparison.
+      </p>
+
+      <div class="image-block">
+        <img src="../images/landslide-analysis/input-buildings.png" alt="Detected building footprints on aerial imagery in Grenada">
+        <div class="caption">
+          Building footprints extracted from aerial imagery using a pretrained deep learning model in ArcGIS Online.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Island-Scale Susceptibility Result</h2>
       <p>
         The raster analysis classified the island into five susceptibility classes ranging from
@@ -307,22 +332,6 @@
         <img src="../images/landslide-analysis/susceptibility-zoom.png" alt="Buildings overlaid on landslide susceptibility classes">
         <div class="caption">
           Zoomed overlay of detected buildings and landslide susceptibility classes used to identify potentially exposed structures.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Building Detection Output</h2>
-      <p>
-        Before combining the results with the susceptibility surface, building footprints were extracted
-        from aerial imagery using a pretrained deep learning model. This step represents the GeoAI input
-        to the final risk-oriented workflow.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/landslide-analysis/input-buildings.png" alt="Detected building footprints on aerial imagery in Grenada">
-        <div class="caption">
-          Building footprints extracted from aerial imagery using a pretrained deep learning model in ArcGIS Online.
         </div>
       </div>
     </section>
