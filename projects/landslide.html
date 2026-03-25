@@ -24,16 +24,8 @@
       padding: 48px 24px 80px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 28px;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: 600;
-    }
-
     .hero {
-      margin-bottom: 56px;
+      margin-bottom: 40px;
     }
 
     .project-label {
@@ -77,29 +69,6 @@
 
     .button:hover {
       background: #1d4ed8;
-    }
-
-    .button.secondary {
-      background: white;
-      color: #111827;
-      border: 1px solid #d1d5db;
-    }
-
-    .button.secondary:hover {
-      background: #f9fafb;
-    }
-
-    .hero-image {
-      margin-top: 32px;
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    .hero-image img {
-      width: 100%;
-      display: block;
     }
 
     .section {
@@ -206,8 +175,6 @@
 </head>
 <body>
   <div class="container">
-    <a class="back-link" href="../index.html">← Back to Portfolio</a>
-
     <section class="hero">
       <div class="project-label">Project 05</div>
       <h1>Identify Infrastructure at Risk of Landslides</h1>
@@ -218,11 +185,6 @@
 
       <div class="button-row">
         <a class="button" href="https://irpud.maps.arcgis.com/apps/instant/sidebar/index.html?appid=054b446d4fd54a9896b929d05d18ca05" target="_blank" rel="noopener noreferrer">View Web App</a>
-        <a class="button secondary" href="../index.html">Back to Projects</a>
-      </div>
-
-      <div class="hero-image">
-        <img src="../images/landslide-analysis/susceptibility-zoom.png" alt="Buildings overlaid on landslide susceptibility classes in Grenada">
       </div>
     </section>
 
@@ -230,8 +192,8 @@
       <h2>Project Focus</h2>
       <p>
         This project demonstrates a complete ArcGIS Online workflow that combines object extraction,
-        raster analysis, and interactive web mapping. The main goal was not only to generate outputs,
-        but to show how multiple geospatial layers can be integrated into a clear risk-focused result.
+        raster analysis, and interactive web mapping. The goal was to move from raw imagery and
+        environmental layers to a clear risk-focused spatial output.
       </p>
     </section>
 
@@ -252,7 +214,7 @@
           <ul>
             <li>Applied raster-based susceptibility analysis in ArcGIS Online</li>
             <li>Classified the landscape into landslide risk categories</li>
-            <li>Interpreted spatial patterns across the full island</li>
+            <li>Interpreted island-scale spatial patterns</li>
           </ul>
         </div>
 
@@ -270,7 +232,7 @@
           <ul>
             <li>Built an interactive web map in ArcGIS Online</li>
             <li>Created an Instant App for result exploration</li>
-            <li>Configured bookmarks, legend, and project description</li>
+            <li>Configured bookmarks, legend, and descriptive project context</li>
           </ul>
         </div>
       </div>
@@ -283,7 +245,7 @@
           <h3>1. Building Extraction</h3>
           <p>
             Aerial TIFF imagery was processed in ArcGIS Online, and a pretrained deep learning model
-            was used to detect building footprints within the study area.
+            was used to detect building footprints in the study area.
           </p>
         </div>
 
@@ -314,27 +276,11 @@
     </section>
 
     <section class="section">
-      <h2>Input Data and Detection Output</h2>
-      <p>
-        The first stage focused on extracting building footprints from aerial imagery.
-        This step demonstrates the GeoAI component of the workflow and shows the detected
-        structures before combining them with the susceptibility analysis.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/landslide-analysis/input-buildings.png" alt="Detected building footprints on aerial imagery in Grenada">
-        <div class="caption">
-          Building footprints extracted from aerial imagery using a pretrained deep learning model in ArcGIS Online.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
       <h2>Island-Scale Susceptibility Result</h2>
       <p>
-        The raster analysis classified the island into five susceptibility classes ranging
-        from very low to very high. This output provided the spatial risk context that was later
-        compared with the building layer.
+        The raster analysis classified the island into five susceptibility classes ranging from
+        very low to very high. This output provided the spatial risk context for the final comparison
+        with the building layer.
       </p>
 
       <div class="note-box">
@@ -352,9 +298,9 @@
     <section class="section">
       <h2>Final Overlay Result</h2>
       <p>
-        The final map compares building locations with susceptibility classes at a closer scale.
-        This is the most important output of the workflow because it translates the analysis into
-        a practical infrastructure risk perspective.
+        The final map compares detected building locations with susceptibility classes at a closer scale.
+        This is the key output of the workflow because it translates the analysis into a practical
+        infrastructure risk perspective.
       </p>
 
       <div class="image-block">
@@ -366,10 +312,26 @@
     </section>
 
     <section class="section">
+      <h2>Building Detection Output</h2>
+      <p>
+        Before combining the results with the susceptibility surface, building footprints were extracted
+        from aerial imagery using a pretrained deep learning model. This step represents the GeoAI input
+        to the final risk-oriented workflow.
+      </p>
+
+      <div class="image-block">
+        <img src="../images/landslide-analysis/input-buildings.png" alt="Detected building footprints on aerial imagery in Grenada">
+        <div class="caption">
+          Building footprints extracted from aerial imagery using a pretrained deep learning model in ArcGIS Online.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Project Outcome</h2>
       <p>
         This project shows how GeoAI outputs and raster-based environmental analysis can be integrated
-        into a single web-based workflow. The final result is not only a map, but a structured spatial
+        into a single web-based workflow. The result is not just a map, but a structured spatial
         decision-support output that connects imagery interpretation, risk classification, and interactive communication.
       </p>
     </section>
