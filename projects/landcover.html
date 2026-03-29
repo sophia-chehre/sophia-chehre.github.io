@@ -3,277 +3,765 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Extract High-Resolution Land Cover with GeoAI</title>
+  <title>High-Resolution Land Cover Segmentation | GeoAI & GIS Portfolio</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #f3f4f6;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted-light: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --max-width: 1240px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      max-width: 1200px;
+      width: min(var(--max-width), calc(100% - 40px));
       margin: 0 auto;
-      padding: 48px 24px 80px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 28px;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: 600;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
     }
 
-    .hero {
-      margin-bottom: 40px;
-    }
-
-    .project-label {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #2563eb;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: 44px;
-      line-height: 1.15;
-      margin: 0 0 18px;
-    }
-
-    .intro {
-      max-width: 760px;
-      font-size: 19px;
-      color: #374151;
-      margin: 0 0 28px;
-    }
-
-    .button-row {
+    .topbar-inner {
       display: flex;
-      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
-    .button {
-      display: inline-block;
+    .nav a {
       text-decoration: none;
-      background: #2563eb;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 10px;
+      font-size: 14px;
       font-weight: 600;
-      transition: background 0.2s ease;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .project-header {
+      padding: 34px 0 22px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, #f8fafc, #f3f4f6);
+    }
+
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .breadcrumb:hover {
+      color: var(--accent);
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .project-header h1 {
+      margin: 0 0 14px;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .project-summary {
+      margin: 0 0 22px;
+      max-width: 780px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
     }
 
     .button:hover {
-      background: #1d4ed8;
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .button-secondary:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+
+    .facts-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .facts-card h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    .facts {
+      display: grid;
+      gap: 14px;
+    }
+
+    .fact {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .fact-value {
+      font-size: 15px;
+      color: var(--muted);
     }
 
     .section {
-      margin-top: 56px;
+      padding: 62px 0;
     }
 
-    .section h2 {
-      font-size: 30px;
-      margin: 0 0 18px;
+    .section-head {
+      margin-bottom: 24px;
     }
 
-    .section p {
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .section-description {
+      margin: 0;
+      max-width: 840px;
       font-size: 17px;
-      color: #374151;
-      margin: 0 0 18px;
-      max-width: 820px;
+      color: var(--muted);
+    }
+
+    .overview-grid,
+    .skills-grid,
+    .workflow-grid,
+    .evidence-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .overview-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .skills-grid,
+    .workflow-grid,
+    .evidence-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .card p,
+    .card ul {
+      margin: 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      padding-left: 18px;
+    }
+
+    .card ul li {
+      margin-bottom: 8px;
+    }
+
+    .signal-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
     .image-block {
-      margin-top: 28px;
-      background: white;
-      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow);
     }
 
     .image-block img {
       width: 100%;
-      display: block;
+      height: auto;
     }
 
     .caption {
-      padding: 16px 18px 18px;
-      font-size: 15px;
-      color: #4b5563;
-      border-top: 1px solid #e5e7eb;
+      padding: 15px 18px 18px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted-light);
     }
 
     .note-box {
-      margin-top: 22px;
+      margin-top: 18px;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 18px;
+      font-size: 15px;
       color: #1e3a8a;
-      font-size: 16px;
-      max-width: 820px;
     }
 
-    @media (max-width: 900px) {
+    .cta-box {
+      background: linear-gradient(135deg, #111827, #0f172a);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.15;
+    }
+
+    .cta-box p {
+      margin: 0 0 22px;
+      max-width: 760px;
+      font-size: 17px;
+      color: #d1d5db;
+    }
+
+    .footer {
+      padding: 22px 0 46px;
+      font-size: 14px;
+      color: var(--muted-light);
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .header-grid,
+      .overview-grid,
+      .skills-grid,
+      .workflow-grid,
+      .evidence-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
       .container {
-        padding: 32px 18px 64px;
+        width: min(var(--max-width), calc(100% - 24px));
       }
 
-      h1 {
+      .topbar-inner {
+        min-height: 60px;
+      }
+
+      .project-header {
+        padding: 26px 0 18px;
+      }
+
+      .project-header h1 {
         font-size: 34px;
       }
 
-      .intro {
-        font-size: 17px;
+      .project-summary,
+      .section-description,
+      .cta-box p {
+        font-size: 16px;
       }
 
-      .section h2 {
+      .section {
+        padding: 50px 0;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .cta-box {
+        padding: 24px 20px;
+      }
+
+      .cta-box h2 {
         font-size: 26px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a class="back-link" href="../index.html">← Back to Portfolio</a>
 
-    <section class="hero">
-      <div class="project-label">Project 04</div>
-      <h1>Extract High-Resolution Land Cover with GeoAI</h1>
-      <p class="intro">
-        GeoAI-based land cover classification, vector refinement, and green space extraction
-        using high-resolution imagery in ArcGIS Pro and ArcGIS Online.
-      </p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="../index.html">GeoAI & GIS Portfolio</a>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#webapp">Web App</a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="button-row">
-        <a class="button" href="https://irpud.maps.arcgis.com/apps/instant/basic/index.html?appid=de5aefb1d12946c29fd5bf1fce597a7c" target="_blank" rel="noopener noreferrer">View Web App</a>
-      </div>
-    </section>
+  <section class="project-header">
+    <div class="container">
+      <a class="breadcrumb" href="../index.html">← Back to Portfolio</a>
 
-    <section class="section">
-      <h2>Project Focus</h2>
-      <p>
-        This project demonstrates a complete GeoAI workflow for high-resolution land cover mapping,
-        starting from orthomosaic imagery and moving through classification, refinement, thematic filtering,
-        and interactive web visualization.
-      </p>
-      <p>
-        The goal was not only to produce a classified land cover result, but also to turn the raw output
-        into cleaner GIS-ready layers that are easier to interpret, compare, and present in a portfolio setting.
-      </p>
-    </section>
+      <div class="header-grid">
+        <div>
+          <div class="eyebrow">Project 03 · Semantic Segmentation</div>
+          <h1>High-Resolution Land Cover Segmentation</h1>
+          <p class="project-summary">
+            This project focused on GeoAI-based land cover classification using high-resolution imagery, followed by raster refinement, vector conversion, thematic filtering, and web-based presentation. The workflow moved from raw model output to cleaner GIS-ready layers that support interpretation and targeted analysis.
+          </p>
 
-    <section class="section">
-      <h2>Input Imagery</h2>
-      <p>
-        The workflow started with a high-resolution orthomosaic used as the input imagery for classification.
-        This image provided the visual detail needed to distinguish urban surfaces, vegetation, and water-related
-        areas across the study site.
-      </p>
+          <div class="tag-list">
+            <span class="tag">ArcGIS Pro</span>
+            <span class="tag">ArcGIS Online</span>
+            <span class="tag">GeoAI</span>
+            <span class="tag">Segmentation</span>
+            <span class="tag">Raster to Vector</span>
+            <span class="tag">Green Space Extraction</span>
+          </div>
 
-      <div class="image-block">
-        <img src="../images/landcover-segmentation/input-imagery.png" alt="Input orthomosaic imagery used for land cover classification">
-        <div class="caption">
-          High-resolution orthomosaic used as the base input for GeoAI land cover classification.
+          <div class="header-actions">
+            <a
+              class="button"
+              href="https://irpud.maps.arcgis.com/apps/instant/basic/index.html?appid=de5aefb1d12946c29fd5bf1fce597a7c"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Web App
+            </a>
+            <a class="button-secondary" href="#outputs">View Key Outputs</a>
+          </div>
         </div>
+
+        <aside class="facts-card">
+          <h2>Quick project facts</h2>
+
+          <div class="facts">
+            <div class="fact">
+              <span class="fact-label">Primary focus</span>
+              <div class="fact-value">Turning segmentation output into cleaner and more usable GIS layers</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Main software</span>
+              <div class="fact-value">ArcGIS Pro for classification and refinement, ArcGIS Online for presentation</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Key evidence</span>
+              <div class="fact-value">Input imagery, classified raster, refined features, and thematic green space extraction</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Output type</span>
+              <div class="fact-value">Interactive web presentation of segmented and filtered land cover layers</div>
+            </div>
+          </div>
+        </aside>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Initial Land Cover Classification</h2>
-      <p>
-        The first output of the workflow was a raster-based land cover classification. This result contained
-        multiple classes including water, wetlands, tree canopy, shrubland, low vegetation, barren surfaces,
-        structures, impervious surfaces, and impervious roads.
-      </p>
-      <p>
-        This stage represents the direct classified model output and provides the full thematic structure of the site
-        before further refinement.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/landcover-segmentation/landcover-raster.png" alt="Raster-based land cover classification result">
-        <div class="caption">
-          Initial raster output showing the classified land cover result across the study area.
-        </div>
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Project overview</h2>
+        <p class="section-description">
+          From a recruiter or GIS analyst perspective, the main value of this project is not only that a land cover map was produced. The stronger signal is that the workflow continued beyond raw classification and demonstrated raster interpretation, vector refinement, thematic extraction, and presentation-ready output preparation.
+        </p>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>Refined Land Cover Features</h2>
-      <p>
-        After classification, the raster result was converted into vector features and symbolized as a cleaner
-        land cover layer. This step made the output easier to manage, interpret, and reuse in a more controlled GIS workflow.
-      </p>
-      <p>
-        Compared with the raw raster output, this refined feature layer provides a more presentation-ready version
-        of the classification and better reflects GIS post-processing skills beyond the model itself.
-      </p>
+      <div class="overview-grid">
+        <article class="card">
+          <span class="signal-label">Why this project matters</span>
+          <h3>More than a model output</h3>
+          <p>
+            This project shows that the classified raster was not treated as a final answer. Instead, it was refined and translated into clearer GIS layers for later use and communication.
+          </p>
+        </article>
 
-      <div class="image-block">
-        <img src="../images/landcover-segmentation/landcover-features.png" alt="Refined vectorized land cover features">
-        <div class="caption">
-          Vectorized and refined land cover layer derived from the classified raster result.
-        </div>
+        <article class="card">
+          <span class="signal-label">Technical emphasis</span>
+          <h3>Segmentation to usable layers</h3>
+          <p>
+            The workflow moved from pixel-based classification to vector-style interpretation and class filtering, which is an important signal of post-processing skill.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Visible outcome</span>
+          <h3>Targeted green space extraction</h3>
+          <p>
+            One of the clearest applied outputs is the extraction of vegetation-related classes into a separate green space layer, making the result more focused and interpretable.
+          </p>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Green Space Extraction</h2>
-      <p>
-        A separate green space layer was derived by isolating vegetation-related classes from the land cover result.
-        In this project, the extracted green spaces mainly focused on low vegetation and tree canopy.
-      </p>
-      <p>
-        This step adds analytical value to the workflow by moving from a full classification result to a more focused thematic output.
-        It shows how classification can support interpretation and targeted spatial analysis.
-      </p>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Software skills demonstrated</h2>
+        <p class="section-description">
+          The skills below are tied directly to the workflow shown on this page. The emphasis is on segmentation output handling, post-processing, and transformation into more analysis-ready products.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="card">
+          <h3>GeoAI land cover classification</h3>
+          <ul>
+            <li>Worked with high-resolution imagery as input for land cover segmentation.</li>
+            <li>Generated a classified raster containing multiple land cover classes.</li>
+            <li>Used GeoAI output as the basis for later filtering and refinement.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Raster interpretation and refinement</h3>
+          <ul>
+            <li>Reviewed the initial raster classification as a multi-class thematic output.</li>
+            <li>Moved beyond the raw raster by preparing a cleaner and more manageable land cover representation.</li>
+            <li>Focused on turning model output into clearer GIS content.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Vector conversion and thematic extraction</h3>
+          <ul>
+            <li>Converted the classified result into refined land cover features.</li>
+            <li>Isolated vegetation-related classes for targeted green space analysis.</li>
+            <li>Demonstrated class filtering as an applied analytical step.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Web-based communication</h3>
+          <ul>
+            <li>Published outputs to ArcGIS Online for interactive review.</li>
+            <li>Built a web app to present the final layers in a clearer interface.</li>
+            <li>Connected technical classification work to a portfolio-friendly delivery format.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Workflow structure</h2>
+        <p class="section-description">
+          The workflow below highlights the main technical stages instead of simply retelling the tutorial. This makes the logic easier to review quickly.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="card">
+          <span class="signal-label">Stage 01</span>
+          <h3>Input imagery preparation</h3>
+          <p>
+            The workflow started with high-resolution orthomosaic imagery used as the visual basis for land cover segmentation.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Stage 02</span>
+          <h3>Initial land cover classification</h3>
+          <p>
+            GeoAI was used to produce a raster-based classification containing multiple land cover classes across the study area.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Stage 03</span>
+          <h3>Refinement and vector conversion</h3>
+          <p>
+            The classified raster was translated into a cleaner land cover layer to improve interpretation, control, and presentation quality.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Stage 04</span>
+          <h3>Thematic extraction and delivery</h3>
+          <p>
+            Vegetation-related classes were filtered into a focused green space layer and the outputs were delivered through an ArcGIS Online web app.
+          </p>
+        </article>
+      </div>
+
+      <div class="note-box">
+        This project is strongest when read as a post-processing workflow, not just a segmentation workflow. The software signal comes from how the classified result was refined, filtered, and turned into clearer GIS outputs.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Workflow evidence</h2>
+        <p class="section-description">
+          These visuals support the main technical stages: input imagery, raw classified raster, and refined land cover features. Each image is included to show process and transformation, not just final appearance.
+        </p>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="image-block">
+          <img src="../images/landcover-segmentation/input-imagery.png" alt="Input orthomosaic imagery used for land cover classification" />
+          <div class="caption">
+            High-resolution orthomosaic used as the source imagery for GeoAI-based land cover segmentation.
+          </div>
+        </article>
+
+        <article class="image-block">
+          <img src="../images/landcover-segmentation/landcover-raster.png" alt="Raster-based land cover classification result" />
+          <div class="caption">
+            Initial classified raster showing the multi-class land cover output produced by the segmentation workflow.
+          </div>
+        </article>
+
+        <article class="image-block">
+          <img src="../images/landcover-segmentation/landcover-features.png" alt="Refined vectorized land cover features" />
+          <div class="caption">
+            Refined land cover layer derived from the classified raster to create a cleaner and more presentation-ready GIS output.
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Analytical interpretation</span>
+          <h3>Why refinement matters here</h3>
+          <p>
+            The classified raster is useful, but the stronger portfolio signal comes from refining it into layers that are easier to interpret, manage, and reuse in later GIS work.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="outputs">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Key analysis output</h2>
+        <p class="section-description">
+          The most focused applied result in this project is the extraction of vegetation-related classes into a separate green space layer. This step turns a broad classification result into a more targeted thematic output.
+        </p>
+      </div>
 
       <div class="note-box">
         Green spaces were extracted from the classified land cover result by filtering vegetation-related classes into a separate thematic layer.
       </div>
 
-      <div class="image-block">
-        <img src="../images/landcover-segmentation/green-spaces.png" alt="Extracted green spaces from classified land cover result">
+      <div class="image-block" style="margin-top: 18px;">
+        <img src="../images/landcover-segmentation/green-spaces.png" alt="Extracted green spaces from classified land cover result" />
         <div class="caption">
-          Extracted green space layer overlaid on the imagery for focused interpretation of vegetation patterns.
+          Green space extraction result showing vegetation-related classes isolated from the broader land cover classification.
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Interactive Web Visualization</h2>
-      <p>
-        The final outputs were published to ArcGIS Online and configured in an interactive web application.
-        This allowed the classified layers and the extracted green spaces to be explored in a clean presentation format,
-        while also making it possible to compare them with the original imagery.
-      </p>
-      <p>
-        The project therefore demonstrates not only GeoAI classification, but also the full workflow from image-based analysis
-        to interactive web delivery.
-      </p>
-    </section>
+  <section class="section" id="webapp">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Interactive result review</h2>
+        <p>
+          The web app supports visual exploration of the classified layers and thematic outputs in a cleaner interface. It is included here to show how the technical workflow was translated into an accessible presentation format.
+        </p>
 
-    <section class="section">
-      <h2>Project Outcome</h2>
-      <p>
-        This project shows a complete workflow that combines image-based classification, raster-to-vector refinement,
-        thematic filtering, and web-based communication. The result is not only a classified map, but a structured GIS output
-        that can support interpretation, comparison, and presentation.
-      </p>
-    </section>
-  </div>
+        <div class="header-actions">
+          <a
+            class="button"
+            href="https://irpud.maps.arcgis.com/apps/instant/basic/index.html?appid=de5aefb1d12946c29fd5bf1fce597a7c"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Web App
+          </a>
+
+          <a class="button-secondary" href="../index.html">
+            Back to Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Project outcome</h2>
+        <p class="section-description">
+          This project demonstrates a complete GeoAI workflow that combines image-based classification, raster refinement, vector-style output preparation, thematic filtering, and web-based communication. The main software signals are segmentation handling, post-processing, targeted class extraction, and presentation of cleaner GIS-ready outputs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      GeoAI & GIS Portfolio — Sophia (Zahra) Chehreghan
+    </div>
+  </footer>
+
 </body>
 </html>
