@@ -3,84 +3,314 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeoAI & GIS Portfolio</title>
+  <title>GeoAI & GIS Portfolio | Sophia (Zahra) Chehreghan</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #f3f4f6;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted-light: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --hero-start: #0f172a;
+      --hero-end: #111827;
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --max-width: 1240px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
     }
 
     .hero {
-      background: linear-gradient(135deg, #1f2937, #111827);
+      background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
       color: white;
-      text-align: center;
-      padding: 72px 20px 56px;
+      padding: 88px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: #dbeafe;
     }
 
     .hero h1 {
-      margin: 0 0 14px;
-      font-size: 42px;
+      margin: 0 0 16px;
+      font-size: 48px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
     }
 
     .hero .name {
+      margin: 0 0 14px;
       font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-weight: 700;
+      color: #ffffff;
     }
 
     .hero .subtitle {
-      margin: 0;
-      font-size: 18px;
+      margin: 0 0 20px;
+      max-width: 760px;
+      font-size: 19px;
       color: #d1d5db;
     }
 
+    .hero .intro {
+      margin: 0;
+      max-width: 760px;
+      font-size: 17px;
+      color: #cbd5e1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .hero-panel p {
+      margin: 0 0 18px;
+      font-size: 15px;
+      color: #d1d5db;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 13px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
     .section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 56px 24px 80px;
+      padding: 64px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
     }
 
     .section-title {
-      text-align: center;
+      margin: 0 0 8px;
       font-size: 34px;
-      margin: 0 0 48px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
-    .project-list {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
+    .section-description {
+      margin: 0;
+      max-width: 760px;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .overview-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .overview-label {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--accent);
+    }
+
+    .overview-card h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .overview-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .projects-wrap {
+      display: grid;
+      gap: 22px;
+      margin-top: 26px;
     }
 
     .project-card {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: white;
-      border-radius: 20px;
+      grid-template-columns: 1.05fr 1.25fr;
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      height: 290px;
-    }
-
-    .project-card.reverse .project-image {
-      order: 2;
-    }
-
-    .project-card.reverse .project-content {
-      order: 1;
+      box-shadow: var(--shadow);
     }
 
     .project-image {
-      width: 100%;
-      height: 100%;
+      position: relative;
+      min-height: 320px;
       background: #dfe4ea;
     }
 
@@ -91,171 +321,510 @@
       object-fit: cover;
     }
 
-    .project-content {
-      padding: 26px 34px;
+    .project-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.82);
+      color: #f9fafb;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
     }
 
-    .project-number {
-      font-size: 14px;
+    .project-content {
+      padding: 28px 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 1px;
+      color: var(--accent);
       text-transform: uppercase;
-      color: #2563eb;
-      margin-bottom: 10px;
+      letter-spacing: 0.35px;
     }
 
     .project-content h3 {
       margin: 0 0 14px;
       font-size: 30px;
-      line-height: 1.15;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
     }
 
-    .project-content p {
-      margin: 0 0 20px;
-      font-size: 17px;
-      color: #374151;
-      max-width: 520px;
+    .project-summary {
+      margin: 0 0 18px;
+      font-size: 16px;
+      color: var(--muted);
     }
 
-    .button {
-      display: inline-block;
-      text-decoration: none;
-      background: #2563eb;
-      color: white;
+    .project-highlights {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .project-highlights li {
+      margin-bottom: 8px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .project-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
       padding: 12px 18px;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: background 0.2s ease;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    .button:hover {
-      background: #1d4ed8;
+    .project-link:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
     }
 
-    @media (max-width: 900px) {
+    .project-note {
+      font-size: 14px;
+      color: var(--muted-light);
+    }
+
+    .footer {
+      padding: 24px 0 48px;
+      color: var(--muted-light);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-image {
+        min-height: 260px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
+      }
+
+      .topbar-inner {
+        min-height: 60px;
+      }
+
+      .nav {
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 68px 0 54px;
+      }
+
       .hero h1 {
-        font-size: 34px;
+        font-size: 36px;
+      }
+
+      .hero .name {
+        font-size: 20px;
+      }
+
+      .hero .subtitle,
+      .hero .intro,
+      .section-description {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .section-head {
+        margin-bottom: 22px;
       }
 
       .section-title {
         font-size: 28px;
       }
 
-      .project-card,
-      .project-card.reverse {
+      .overview-grid {
         grid-template-columns: 1fr;
-        height: auto;
-      }
-
-      .project-card.reverse .project-image,
-      .project-card.reverse .project-content {
-        order: initial;
-      }
-
-      .project-image {
-        height: 220px;
       }
 
       .project-content {
-        padding: 24px;
+        padding: 22px 20px 24px;
       }
 
       .project-content h3 {
         font-size: 24px;
+      }
+
+      .project-image {
+        min-height: 220px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero">
-    <h1>GeoAI & GIS Portfolio</h1>
-    <div class="name">Sophia (Zahra) Chehreghan</div>
-    <p class="subtitle">Urban Planner | Spatial Analysis | GeoAI</p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">GeoAI & GIS Portfolio</a>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#projects">Projects</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="section">
-    <h2 class="section-title">Projects</h2>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Technical Portfolio</div>
+        <h1>GeoAI and GIS workflows focused on software skills, analysis, and applied outputs</h1>
+        <p class="name">Sophia (Zahra) Chehreghan</p>
+        <p class="subtitle">Urban Planner | GIS | GeoAI | ArcGIS Pro | ArcGIS Online</p>
+        <p class="intro">
+          This portfolio complements my CV by highlighting hands-on GeoAI and GIS workflows in ArcGIS Pro and ArcGIS Online.
+          The focus is on technical process, software use, model application, post-processing, raster analysis, and web-based result presentation.
+        </p>
 
-    <div class="project-list">
-
-      <article class="project-card">
-        <div class="project-image">
-          <img src="images/textsam-boat-detection/textsam-cover.png" alt="Detect Objects with TextSAM">
+        <div class="hero-actions">
+          <a class="button" href="#projects">Explore Projects</a>
+          <a class="button-secondary" href="#overview">View Portfolio Focus</a>
         </div>
+      </div>
 
-        <div class="project-content">
-          <div class="project-number">Project 01</div>
-          <h3>Detect Objects with TextSAM</h3>
-          <p>
-            Object detection in high-resolution aerial imagery using the TextSAM model in ArcGIS Pro.
-          </p>
-          <a class="button" href="projects/textsam.html">View Project</a>
+      <aside class="hero-panel">
+        <h2>Core workflow areas</h2>
+        <p>
+          The projects below emphasize practical work with deep learning tools, transfer learning, semantic segmentation,
+          raster-based suitability analysis, vector cleanup, and publishing results through project pages and web apps.
+        </p>
+
+        <div class="skill-list">
+          <span class="skill-chip">ArcGIS Pro</span>
+          <span class="skill-chip">ArcGIS Online</span>
+          <span class="skill-chip">Object Detection</span>
+          <span class="skill-chip">Transfer Learning</span>
+          <span class="skill-chip">Semantic Segmentation</span>
+          <span class="skill-chip">Raster Analysis</span>
+          <span class="skill-chip">Post-processing</span>
+          <span class="skill-chip">Instant Apps</span>
         </div>
-      </article>
-
-      <article class="project-card reverse">
-        <div class="project-image">
-          <img src="images/palm-detection/palm-thumbnail.png" alt="Detect Objects with a Deep Learning Pretrained Model">
-        </div>
-
-        <div class="project-content">
-          <div class="project-number">Project 02</div>
-          <h3>Detect Objects with a Deep Learning Pretrained Model</h3>
-          <p>
-            Automated object detection using a pretrained deep learning model in ArcGIS Pro.
-          </p>
-          <a class="button" href="projects/palm.html">View Project</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-image">
-          <img src="images/transfer-learning/building-thumbnail.png" alt="Improve a Deep Learning Model with Transfer Learning">
-        </div>
-
-        <div class="project-content">
-          <div class="project-number">Project 03</div>
-          <h3>Improve a Deep Learning Model with Transfer Learning</h3>
-          <p>
-            Fine-tuning a deep learning model to improve building footprint detection results.
-          </p>
-          <a class="button" href="projects/transfer-learning.html">View Project</a>
-        </div>
-      </article>
-
-      <article class="project-card reverse">
-        <div class="project-image">
-          <img src="images/landcover-segmentation/landcover-thumbnail.png" alt="Extract High-Resolution Land Cover with GeoAI">
-        </div>
-
-        <div class="project-content">
-          <div class="project-number">Project 04</div>
-          <h3>Extract High-Resolution Land Cover with GeoAI</h3>
-          <p>
-            High-resolution land cover mapping and green space extraction using GeoAI workflows in ArcGIS Online and ArcGIS Pro.
-          </p>
-          <a class="button" href="projects/landcover.html">View Project</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-image">
-          <img src="images/landslide-analysis/landslide-thumbnail.png" alt="Identify Infrastructure at Risk of Landslides">
-        </div>
-
-        <div class="project-content">
-          <div class="project-number">Project 05</div>
-          <h3>Identify Infrastructure at Risk of Landslides</h3>
-          <p>
-            Building extraction and raster-based landslide susceptibility analysis in ArcGIS Online to identify exposed structures.
-          </p>
-          <a class="button" href="projects/landslide.html">View Project</a>
-        </div>
-      </article>
-
+      </aside>
     </div>
   </section>
+
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Portfolio focus</h2>
+          <p class="section-description">
+            Each project page is designed to show workflow, software steps, technical choices, and outputs efficiently.
+            The goal is not to retell the full project story, but to make software capability and applied analysis visible at a glance.
+          </p>
+        </div>
+      </div>
+
+      <div class="overview-grid">
+        <article class="overview-card">
+          <div class="overview-label">Focus 01</div>
+          <h3>Applied GeoAI workflows</h3>
+          <p>Object detection, transfer learning, and land cover extraction using pretrained and adapted deep learning models.</p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-label">Focus 02</div>
+          <h3>Technical processing</h3>
+          <p>Confidence filtering, threshold decisions, vector cleanup, raster-to-feature conversion, and result refinement.</p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-label">Focus 03</div>
+          <h3>Spatial analysis</h3>
+          <p>Raster-based suitability workflows, overlay analysis, class extraction, and exposure mapping for decision support.</p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-label">Focus 04</div>
+          <h3>Output presentation</h3>
+          <p>Project pages and web app presentation to communicate results clearly beyond the ArcGIS working environment.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Selected projects</h2>
+          <p class="section-description">
+            The project order below prioritizes technical signal and workflow depth, while keeping the portfolio easy to scan for recruiters and GIS hiring teams.
+          </p>
+        </div>
+      </div>
+
+      <div class="projects-wrap">
+
+        <article class="project-card">
+          <div class="project-image">
+            <img src="images/transfer-learning/building-thumbnail.png" alt="Transfer learning for building detection" />
+            <div class="project-badge">Featured Workflow</div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span>Project 01</span>
+              <span>Transfer Learning</span>
+            </div>
+
+            <h3>Building Detection with Transfer Learning</h3>
+
+            <p class="project-summary">
+              Fine-tuning a pretrained deep learning model to improve building footprint extraction in new imagery conditions.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Created training samples and prepared training data for model adaptation.</li>
+              <li>Worked with chip size, training workflow, and inference output comparison.</li>
+              <li>Focused on improved building extraction quality rather than using a pretrained model as-is.</li>
+            </ul>
+
+            <div class="tag-list">
+              <span class="tag">ArcGIS Pro</span>
+              <span class="tag">Transfer Learning</span>
+              <span class="tag">Building Footprints</span>
+              <span class="tag">Training Samples</span>
+              <span class="tag">Model Adaptation</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="project-link" href="projects/transfer-learning.html">View Project</a>
+              <span class="project-note">Training + inference workflow</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <img src="images/landslide-analysis/landslide-thumbnail.png" alt="Landslide exposure analysis" />
+            <div class="project-badge">End-to-End Analysis</div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span>Project 02</span>
+              <span>Risk Analysis</span>
+            </div>
+
+            <h3>Landslide Exposure Analysis</h3>
+
+            <p class="project-summary">
+              Combined AI-based building extraction with raster-based landslide susceptibility analysis to identify exposed infrastructure.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Integrated deep learning output with multi-layer raster analysis.</li>
+              <li>Used overlay logic to move from extracted features to decision-relevant exposure mapping.</li>
+              <li>Showed how GeoAI results can support broader spatial risk workflows.</li>
+            </ul>
+
+            <div class="tag-list">
+              <span class="tag">ArcGIS Online</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">Raster Analysis</span>
+              <span class="tag">Overlay</span>
+              <span class="tag">Risk Mapping</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="project-link" href="projects/landslide.html">View Project</a>
+              <span class="project-note">GeoAI + spatial decision workflow</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <img src="images/landcover-segmentation/landcover-thumbnail.png" alt="Land cover segmentation with GeoAI" />
+            <div class="project-badge">Segmentation Workflow</div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span>Project 03</span>
+              <span>Semantic Segmentation</span>
+            </div>
+
+            <h3>High-Resolution Land Cover Segmentation</h3>
+
+            <p class="project-summary">
+              Generated land cover classes from high-resolution imagery and used the results for class extraction and green space analysis.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Worked with pixel-based classification rather than object detection.</li>
+              <li>Converted classified outputs into analysis-ready layers for further use.</li>
+              <li>Focused on interpretation, extraction, and presentation of meaningful land cover results.</li>
+            </ul>
+
+            <div class="tag-list">
+              <span class="tag">ArcGIS Pro</span>
+              <span class="tag">ArcGIS Online</span>
+              <span class="tag">GeoAI</span>
+              <span class="tag">Segmentation</span>
+              <span class="tag">Class Extraction</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="project-link" href="projects/landcover.html">View Project</a>
+              <span class="project-note">Pixel classification to usable layers</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <img src="images/textsam-boat-detection/textsam-cover.png" alt="TextSAM boat detection" />
+            <div class="project-badge">Prompt-Based Detection</div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span>Project 04</span>
+              <span>Object Detection</span>
+            </div>
+
+            <h3>TextSAM Boat Detection</h3>
+
+            <p class="project-summary">
+              Used text-prompt object detection in aerial imagery and improved raw outputs through filtering and result cleanup.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Applied TextSAM with prompt-based detection in ArcGIS Pro.</li>
+              <li>Refined outputs using confidence- and area-based filtering decisions.</li>
+              <li>Demonstrated post-processing as an important part of a usable GeoAI workflow.</li>
+            </ul>
+
+            <div class="tag-list">
+              <span class="tag">ArcGIS Pro</span>
+              <span class="tag">TextSAM</span>
+              <span class="tag">Object Detection</span>
+              <span class="tag">NMS</span>
+              <span class="tag">Post-processing</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="project-link" href="projects/textsam.html">View Project</a>
+              <span class="project-note">Prompt detection + cleanup workflow</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <img src="images/palm-detection/palm-thumbnail.png" alt="Palm tree detection with pretrained model" />
+            <div class="project-badge">Pretrained Model</div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-meta">
+              <span>Project 05</span>
+              <span>Object Detection</span>
+            </div>
+
+            <h3>Palm Tree Detection with a Pretrained Model</h3>
+
+            <p class="project-summary">
+              Applied a pretrained object detection model to extract palm tree locations from aerial imagery in ArcGIS Pro.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Focused on inference workflow using a ready-to-use deep learning package.</li>
+              <li>Produced structured detection outputs for interpretation and counting.</li>
+              <li>Useful as a clear example of pretrained model deployment in GIS imagery tasks.</li>
+            </ul>
+
+            <div class="tag-list">
+              <span class="tag">ArcGIS Pro</span>
+              <span class="tag">Pretrained Model</span>
+              <span class="tag">Palm Detection</span>
+              <span class="tag">Inference</span>
+              <span class="tag">Feature Output</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="project-link" href="projects/palm.html">View Project</a>
+              <span class="project-note">Inference-focused detection workflow</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      GeoAI & GIS Portfolio — Sophia (Zahra) Chehreghan
+    </div>
+  </footer>
 
 </body>
 </html>
