@@ -273,7 +273,7 @@
 
     .section-description {
       margin: 0;
-      max-width: 820px;
+      max-width: 840px;
       font-size: 17px;
       color: var(--muted);
     }
@@ -292,15 +292,8 @@
 
     .skills-grid,
     .workflow-grid,
-    .evidence-grid,
-    .comparison-grid {
+    .evidence-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .comparison-grid {
-      display: grid;
-      gap: 18px;
-      margin-top: 22px;
     }
 
     .card {
@@ -372,40 +365,6 @@
       color: #1e3a8a;
     }
 
-    .comparison-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .comparison-content {
-      padding: 18px 18px 20px;
-    }
-
-    .comparison-kicker {
-      display: inline-block;
-      margin-bottom: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      color: var(--accent);
-    }
-
-    .comparison-content h3 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      line-height: 1.2;
-    }
-
-    .comparison-content p {
-      margin: 0;
-      font-size: 15px;
-      color: var(--muted);
-    }
-
     .cta-box {
       background: linear-gradient(135deg, #111827, #0f172a);
       color: white;
@@ -439,8 +398,7 @@
       .overview-grid,
       .skills-grid,
       .workflow-grid,
-      .evidence-grid,
-      .comparison-grid {
+      .evidence-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -494,7 +452,7 @@
       <nav class="nav">
         <a href="#overview">Overview</a>
         <a href="#workflow">Workflow</a>
-        <a href="#results">Results</a>
+        <a href="#outputs">Outputs</a>
         <a href="#webapp">Web App</a>
       </nav>
     </div>
@@ -530,7 +488,7 @@
             >
               Open Web App
             </a>
-            <a class="button-secondary" href="#results">View Visual Results</a>
+            <a class="button-secondary" href="#outputs">View Key Outputs</a>
           </div>
         </div>
 
@@ -550,7 +508,7 @@
 
             <div class="fact">
               <span class="fact-label">Key evidence</span>
-              <div class="fact-value">Detected buildings, island-scale susceptibility map, and final overlay output</div>
+              <div class="fact-value">Detected buildings, susceptibility setup, island-scale risk surface, and final overlay result</div>
             </div>
 
             <div class="fact">
@@ -568,7 +526,7 @@
       <div class="section-head">
         <h2 class="section-title">Project overview</h2>
         <p class="section-description">
-          From a recruiter or GIS analyst perspective, the value of this project is not only the final map. The stronger signal is that it connects multiple technical layers into one workflow: GeoAI-based feature extraction, raster susceptibility modeling, overlay logic, and web-based delivery of a decision-support result.
+          From a recruiter or GIS analyst perspective, the value of this project is not only the final map. The stronger signal is that it connects multiple technical layers into one workflow: GeoAI-based building extraction, raster susceptibility modeling, overlay logic, and web-based delivery of a decision-support result.
         </p>
       </div>
 
@@ -613,7 +571,7 @@
         <article class="card">
           <h3>GeoAI and deep learning inference</h3>
           <ul>
-            <li>Used a pretrained model from ArcGIS Living Atlas to detect building footprints from aerial imagery.</li>
+            <li>Used a pretrained model to detect building footprints from aerial imagery.</li>
             <li>Worked with object detection output as a feature layer for later spatial comparison.</li>
             <li>Integrated AI-based extraction into a broader GIS workflow rather than stopping at detection.</li>
           </ul>
@@ -624,7 +582,7 @@
           <ul>
             <li>Applied raster analysis in ArcGIS Online to classify landslide susceptibility.</li>
             <li>Worked with multiple environmental input layers to generate the risk surface.</li>
-            <li>Interpreted results at island scale before moving to local overlay review.</li>
+            <li>Interpreted results at island scale before moving to local exposure review.</li>
           </ul>
         </article>
 
@@ -642,7 +600,7 @@
           <ul>
             <li>Published outputs through an ArcGIS Online web map and Instant App.</li>
             <li>Configured interactive review through map layers, context, and app presentation.</li>
-            <li>Connected technical analysis to a presentation format that is easier to assess quickly.</li>
+            <li>Connected technical analysis to a format that is easier to assess quickly.</li>
           </ul>
         </article>
       </div>
@@ -654,7 +612,7 @@
       <div class="section-head">
         <h2 class="section-title">Workflow structure</h2>
         <p class="section-description">
-          The workflow below highlights the main technical stages instead of retelling the tutorial line by line. That makes the logic easier to review quickly.
+          The workflow below highlights the main technical stages instead of retelling the tutorial line by line. That makes the analysis logic easier to review quickly.
         </p>
       </div>
 
@@ -669,31 +627,31 @@
 
         <article class="card">
           <span class="signal-label">Stage 02</span>
-          <h3>Susceptibility surface creation</h3>
+          <h3>Susceptibility model setup</h3>
           <p>
-            Landslide susceptibility was modeled through raster analysis using elevation, soil types, land use, and distance to rivers as input layers.
+            Environmental raster inputs were prepared as the analytical basis for the susceptibility surface, including elevation, soil types, land use, and distance to rivers.
           </p>
         </article>
 
         <article class="card">
           <span class="signal-label">Stage 03</span>
-          <h3>Overlay-based exposure analysis</h3>
+          <h3>Susceptibility surface creation</h3>
           <p>
-            The building layer was compared with the raster risk surface to identify structures located in moderate to very high susceptibility zones.
+            Raster analysis was used to classify the landscape into landslide susceptibility classes and establish the broader spatial risk context across the island.
           </p>
         </article>
 
         <article class="card">
           <span class="signal-label">Stage 04</span>
-          <h3>Interactive delivery</h3>
+          <h3>Exposure overlay and delivery</h3>
           <p>
-            The final outputs were published as an interactive web map and Instant App so the results could be explored beyond the analysis environment.
+            The building layer was compared with the susceptibility surface to identify exposed structures, and the final outputs were delivered through a web map and Instant App.
           </p>
         </article>
       </div>
 
       <div class="note-box">
-        Input layers used for susceptibility modeling included elevation, soil types, land use, and distance to rivers. This is important because the raster result was not a standalone visualization but a multi-input analytical surface.
+        This project is strongest when read as an integration workflow: imagery-based extraction, raster modeling, and final infrastructure exposure interpretation in one online analysis pipeline.
       </div>
     </div>
   </section>
@@ -703,7 +661,7 @@
       <div class="section-head">
         <h2 class="section-title">Workflow evidence</h2>
         <p class="section-description">
-          These visuals show the main evidence layers in the process: extracted buildings, island-scale susceptibility output, and the final risk-focused overlay.
+          These visuals support the main analytical stages: detected buildings, susceptibility setup, and island-scale risk mapping. Each image is included as technical evidence, not as repeated decoration.
         </p>
       </div>
 
@@ -716,46 +674,44 @@
         </article>
 
         <article class="image-block">
+          <img src="../images/landslide-analysis/susceptibility-input-layers.png" alt="Raster inputs used for landslide susceptibility analysis" />
+          <div class="caption">
+            Analysis setup showing the raster inputs used for susceptibility modeling, including elevation, soil types, land use, and distance to rivers.
+          </div>
+        </article>
+
+        <article class="image-block">
           <img src="../images/landslide-analysis/susceptibility-overview.png" alt="Island-wide landslide susceptibility map for Grenada" />
           <div class="caption">
-            Island-scale landslide susceptibility map showing the distribution of risk classes across Grenada.
+            Island-scale landslide susceptibility map showing how risk classes are distributed across Grenada before moving to local exposure interpretation.
           </div>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Analytical interpretation</span>
+          <h3>Why these steps matter together</h3>
+          <p>
+            The building layer alone does not answer the risk question, and the susceptibility surface alone does not identify exposed structures. The value of the workflow comes from linking both outputs through overlay and spatial interpretation.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="results">
+  <section class="section" id="outputs">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Result comparison</h2>
+        <h2 class="section-title">Key analysis output</h2>
         <p class="section-description">
-          The strongest evidence in this project is the shift from separate technical outputs to an integrated overlay result that highlights exposed infrastructure more clearly.
+          The most important final view in this project is the overlay that places detected buildings in relation to susceptibility classes. This is the point where separate analytical outputs become an exposure-focused result.
         </p>
       </div>
 
-      <div class="comparison-grid">
-        <article class="comparison-card">
-          <img src="../images/landslide-analysis/susceptibility-overview.png" alt="Island-wide landslide susceptibility overview map" />
-          <div class="comparison-content">
-            <span class="comparison-kicker">Context view</span>
-            <h3>Island-scale susceptibility result</h3>
-            <p>
-              This view establishes the spatial risk context across the island and shows how susceptibility varies before local infrastructure comparison is introduced.
-            </p>
-          </div>
-        </article>
-
-        <article class="comparison-card">
-          <img src="../images/landslide-analysis/susceptibility-zoom.png" alt="Buildings overlaid on landslide susceptibility classes" />
-          <div class="comparison-content">
-            <span class="comparison-kicker">Applied view</span>
-            <h3>Infrastructure exposure overlay</h3>
-            <p>
-              This closer view translates the analysis into a more practical planning perspective by showing detected structures in relation to susceptibility classes.
-            </p>
-          </div>
-        </article>
+      <div class="image-block">
+        <img src="../images/landslide-analysis/susceptibility-zoom.png" alt="Buildings overlaid on landslide susceptibility classes" />
+        <div class="caption">
+          Final overlay showing detected buildings in relation to landslide susceptibility classes, used to identify potentially exposed infrastructure.
+        </div>
       </div>
     </div>
   </section>
@@ -791,7 +747,7 @@
       <div class="section-head">
         <h2 class="section-title">Project outcome</h2>
         <p class="section-description">
-          This project demonstrates how GeoAI extraction and raster-based environmental analysis can be integrated into one web-based workflow. The main software signals are deep learning inference, susceptibility modeling, overlay analysis, multi-scale interpretation, and clear communication of results through ArcGIS Online.
+          This project demonstrates how GeoAI extraction and raster-based environmental analysis can be integrated into one web-based workflow. The main software signals are deep learning inference, susceptibility model setup, raster analysis, overlay interpretation, and clear communication of results through ArcGIS Online.
         </p>
       </div>
     </div>
