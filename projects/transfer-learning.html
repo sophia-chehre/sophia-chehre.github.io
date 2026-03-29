@@ -20,8 +20,6 @@
       --border: #e5e7eb;
       --accent: #2563eb;
       --accent-dark: #1d4ed8;
-      --hero-start: #0f172a;
-      --hero-end: #111827;
       --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
       --radius-xl: 24px;
       --radius-lg: 18px;
@@ -100,80 +98,79 @@
       color: var(--accent);
     }
 
-    .hero {
-      background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
-      color: white;
-      padding: 70px 0 62px;
+    .project-header {
+      padding: 34px 0 22px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, #f8fafc, #f3f4f6);
     }
 
-    .back-link {
+    .breadcrumb {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       text-decoration: none;
-      color: #cbd5e1;
+      color: var(--muted);
       font-size: 14px;
       font-weight: 700;
     }
 
-    .back-link:hover {
-      color: #ffffff;
+    .breadcrumb:hover {
+      color: var(--accent);
     }
 
-    .hero-grid {
+    .header-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.85fr;
-      gap: 28px;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 24px;
       align-items: start;
     }
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 16px;
-      padding: 8px 12px;
+      margin-bottom: 14px;
+      padding: 7px 11px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      font-size: 13px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.4px;
       text-transform: uppercase;
-      color: #dbeafe;
     }
 
-    .hero h1 {
-      margin: 0 0 16px;
-      font-size: 46px;
+    .project-header h1 {
+      margin: 0 0 14px;
+      font-size: 44px;
       line-height: 1.08;
       letter-spacing: -0.02em;
     }
 
-    .hero-summary {
-      margin: 0 0 24px;
-      max-width: 760px;
+    .project-summary {
+      margin: 0 0 22px;
+      max-width: 780px;
       font-size: 18px;
-      color: #d1d5db;
+      color: var(--muted);
     }
 
     .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .tag {
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--surface);
+      border: 1px solid var(--border);
       font-size: 13px;
       font-weight: 700;
-      color: #e5e7eb;
+      color: #334155;
     }
 
-    .hero-actions {
+    .header-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -206,27 +203,27 @@
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
     .button-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
+      border-color: #cbd5e1;
       transform: translateY(-1px);
     }
 
-    .hero-panel {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .facts-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-xl);
-      padding: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
     }
 
-    .hero-panel h2 {
+    .facts-card h2 {
       margin: 0 0 16px;
       font-size: 18px;
-      color: #ffffff;
     }
 
     .facts {
@@ -236,7 +233,7 @@
 
     .fact {
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border);
     }
 
     .fact:last-child {
@@ -251,12 +248,12 @@
       font-weight: 700;
       letter-spacing: 0.4px;
       text-transform: uppercase;
-      color: #93c5fd;
+      color: var(--accent);
     }
 
     .fact-value {
       font-size: 15px;
-      color: #e5e7eb;
+      color: var(--muted);
     }
 
     .section {
@@ -293,16 +290,17 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .skills-grid {
+    .skills-grid,
+    .workflow-grid,
+    .evidence-grid,
+    .comparison-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .workflow-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .evidence-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .comparison-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
     }
 
     .card {
@@ -380,13 +378,6 @@
       color: #1e3a8a;
     }
 
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 22px;
-    }
-
     .comparison-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -450,14 +441,8 @@
     }
 
     @media (max-width: 1100px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .header-grid,
+      .overview-grid,
       .skills-grid,
       .workflow-grid,
       .evidence-grid,
@@ -475,15 +460,15 @@
         min-height: 60px;
       }
 
-      .hero {
-        padding: 54px 0 48px;
+      .project-header {
+        padding: 26px 0 18px;
       }
 
-      .hero h1 {
+      .project-header h1 {
         font-size: 34px;
       }
 
-      .hero-summary,
+      .project-summary,
       .section-description,
       .cta-box p {
         font-size: 16px;
@@ -521,15 +506,15 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="project-header">
     <div class="container">
-      <a class="back-link" href="../index.html">← Back to Portfolio</a>
+      <a class="breadcrumb" href="../index.html">← Back to Portfolio</a>
 
-      <div class="hero-grid">
+      <div class="header-grid">
         <div>
           <div class="eyebrow">Project 01 · Transfer Learning</div>
           <h1>Building Detection with Transfer Learning</h1>
-          <p class="hero-summary">
+          <p class="project-summary">
             This project focused on improving building footprint extraction by adapting a pretrained deep learning model in ArcGIS Pro.
             Instead of relying on inference only, the workflow used custom training samples, model fine-tuning, and before/after comparison to show how transfer learning improved extraction quality under new imagery conditions.
           </p>
@@ -543,7 +528,7 @@
             <span class="tag">Web App Presentation</span>
           </div>
 
-          <div class="hero-actions">
+          <div class="header-actions">
             <a
               class="button"
               href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756"
@@ -556,7 +541,7 @@
           </div>
         </div>
 
-        <aside class="hero-panel">
+        <aside class="facts-card">
           <h2>Quick project facts</h2>
 
           <div class="facts">
@@ -628,7 +613,7 @@
       <div class="section-head">
         <h2 class="section-title">Software skills demonstrated</h2>
         <p class="section-description">
-          The page is structured to make software capability visible quickly. The skills below are not generic claims but are directly tied to the workflow shown in the screenshots and final outputs.
+          The page is structured to make software capability visible quickly. The skills below are directly tied to the workflow shown in the screenshots and final outputs.
         </p>
       </div>
 
@@ -677,7 +662,7 @@
       <div class="section-head">
         <h2 class="section-title">Workflow structure</h2>
         <p class="section-description">
-          The workflow below is arranged to highlight the main technical stages rather than retell the tutorial step by step. This makes the logic of the process easier to scan.
+          The workflow below highlights the main technical stages rather than retelling the tutorial step by step.
         </p>
       </div>
 
@@ -716,7 +701,7 @@
       </div>
 
       <div class="note-box">
-        Transfer learning in this project was used to refine an existing model for a new dataset, not to build a deep learning workflow entirely from scratch. That distinction is important because it shows adaptation, evaluation, and practical model reuse.
+        Transfer learning in this project was used to refine an existing model for a new dataset, not to build a deep learning workflow entirely from scratch.
       </div>
     </div>
   </section>
@@ -726,7 +711,7 @@
       <div class="section-head">
         <h2 class="section-title">Workflow evidence</h2>
         <p class="section-description">
-          These images support the technical process: image preparation, training sample creation, and model training. They are placed here as evidence of workflow, not as decorative screenshots.
+          These images support the technical process: image preparation, training sample creation, and model training.
         </p>
       </div>
 
@@ -767,7 +752,7 @@
       <div class="section-head">
         <h2 class="section-title">Result comparison</h2>
         <p class="section-description">
-          The strongest evidence in this project is the contrast between the baseline result and the refined output after transfer learning. That comparison makes the value of the workflow easy to understand in a short review.
+          The strongest evidence in this project is the contrast between the baseline result and the refined output after transfer learning.
         </p>
       </div>
 
@@ -778,7 +763,7 @@
             <span class="comparison-kicker">Before transfer learning</span>
             <h3>Baseline extraction result</h3>
             <p>
-              This output shows the behavior of the pretrained model before any local adaptation. It serves as the reference point for evaluating the impact of transfer learning.
+              This output shows the behavior of the pretrained model before any local adaptation.
             </p>
           </div>
         </article>
@@ -789,7 +774,7 @@
             <span class="comparison-kicker">After transfer learning</span>
             <h3>Refined extraction result</h3>
             <p>
-              This output reflects the model after fine-tuning with custom samples. The comparison shows how transfer learning improved alignment with the target imagery conditions.
+              This output reflects the model after fine-tuning with custom samples.
             </p>
           </div>
         </article>
@@ -802,10 +787,10 @@
       <div class="cta-box">
         <h2>Interactive result review</h2>
         <p>
-          The compare web app makes the improvement easier to inspect interactively. It is included here to support fast visual review of the baseline and refined outputs, especially for readers who want direct evidence rather than long explanation.
+          The compare web app makes the improvement easier to inspect interactively and supports fast visual review of the baseline and refined outputs.
         </p>
 
-        <div class="hero-actions">
+        <div class="header-actions">
           <a
             class="button"
             href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756"
