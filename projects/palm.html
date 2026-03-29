@@ -3,213 +3,571 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detect Objects with a Deep Learning Pretrained Model</title>
+  <title>Palm Tree Detection with a Pretrained Model | GeoAI & GIS Portfolio</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #f3f4f6;
+      --surface: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted-light: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --max-width: 1240px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
 
-    .topbar {
-      background: #111827;
-      padding: 18px 24px;
+    a {
+      color: inherit;
     }
 
-    .topbar a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      max-width: 1100px;
+      width: min(var(--max-width), calc(100% - 40px));
       margin: 0 auto;
-      padding: 40px 24px 80px;
     }
 
-    .hero {
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      margin-bottom: 32px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
     }
 
-    .hero img {
-      width: 100%;
-      display: block;
-      max-height: 420px;
-      object-fit: cover;
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
     }
 
-    .hero-content {
-      padding: 28px;
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      color: var(--text);
+      white-space: nowrap;
     }
 
-    .hero-content h1 {
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .project-header {
+      padding: 34px 0 22px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, #f8fafc, #f3f4f6);
+    }
+
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .breadcrumb:hover {
+      color: var(--accent);
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .project-header h1 {
       margin: 0 0 14px;
-      font-size: 38px;
-      line-height: 1.2;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
     }
 
-    .hero-content p {
-      margin: 0;
+    .project-summary {
+      margin: 0 0 22px;
+      max-width: 780px;
       font-size: 18px;
-      color: #374151;
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .facts-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .facts-card h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    .facts {
+      display: grid;
+      gap: 14px;
+    }
+
+    .fact {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .fact-value {
+      font-size: 15px;
+      color: var(--muted);
     }
 
     .section {
-      background: white;
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      margin-bottom: 24px;
+      padding: 56px 0;
     }
 
-    .section h2 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 28px;
+    .section-head {
+      margin-bottom: 22px;
     }
 
-    .section p {
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 32px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .section-description {
       margin: 0;
+      max-width: 840px;
+      font-size: 17px;
+      color: var(--muted);
     }
 
-    .section ul {
+    .skills-grid,
+    .workflow-grid,
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .card p,
+    .card ul {
       margin: 0;
-      padding-left: 22px;
+      font-size: 15px;
+      color: var(--muted);
     }
 
-    .section li {
+    .card ul {
+      padding-left: 18px;
+    }
+
+    .card ul li {
       margin-bottom: 8px;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
+    .signal-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
-    .gallery-item img {
-      width: 100%;
-      border-radius: 14px;
-      display: block;
+    .image-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .caption {
-      margin-top: 10px;
-      font-size: 15px;
-      color: #4b5563;
+      padding: 15px 18px 18px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted-light);
     }
 
-    @media (max-width: 800px) {
-      .hero-content h1 {
-        font-size: 30px;
+    .footer {
+      padding: 22px 0 46px;
+      font-size: 14px;
+      color: var(--muted-light);
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .header-grid,
+      .skills-grid,
+      .workflow-grid,
+      .evidence-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
       }
 
-      .section h2 {
-        font-size: 24px;
+      .topbar-inner {
+        min-height: 60px;
+      }
+
+      .project-header {
+        padding: 26px 0 18px;
+      }
+
+      .project-header h1 {
+        font-size: 34px;
+      }
+
+      .project-summary,
+      .section-description {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 46px 0;
+      }
+
+      .section-title {
+        font-size: 28px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <a href="../index.html">← Back to Portfolio</a>
-  </div>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="../index.html">GeoAI & GIS Portfolio</a>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#outputs">Outputs</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="container">
+  <section class="project-header">
+    <div class="container">
+      <a class="breadcrumb" href="../index.html">← Back to Portfolio</a>
 
-    <div class="hero">
-      <img src="../images/palm-detection/palm-thumbnail.png" alt="Detect Objects with a Deep Learning Pretrained Model">
-      <div class="hero-content">
-        <h1>Detect Objects with a Deep Learning Pretrained Model</h1>
-        <p>
-          Automated palm tree detection in high-resolution aerial imagery using a pretrained deep learning model in ArcGIS Pro.
+      <div class="header-grid">
+        <div>
+          <div class="eyebrow">Project 05 · Pretrained Detection</div>
+          <h1>Palm Tree Detection with a Pretrained Model</h1>
+          <p class="project-summary">
+            This project demonstrates a simple pretrained-model workflow in ArcGIS Pro. A palm tree detection model was applied to high-resolution aerial imagery to generate bounding box detections and produce a structured feature output for visual review.
+          </p>
+
+          <div class="tag-list">
+            <span class="tag">ArcGIS Pro</span>
+            <span class="tag">ArcGIS Living Atlas</span>
+            <span class="tag">Pretrained Model</span>
+            <span class="tag">Object Detection</span>
+            <span class="tag">Bounding Boxes</span>
+          </div>
+        </div>
+
+        <aside class="facts-card">
+          <h2>Quick project facts</h2>
+
+          <div class="facts">
+            <div class="fact">
+              <span class="fact-label">Primary focus</span>
+              <div class="fact-value">Applying a ready-to-use palm tree detection model</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Main software</span>
+              <div class="fact-value">ArcGIS Pro</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Key evidence</span>
+              <div class="fact-value">Input imagery, area-wide detection output, and close-up bounding boxes</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Workflow type</span>
+              <div class="fact-value">Inference with a pretrained model</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Project overview</h2>
+        <p class="section-description">
+          Compared with the other projects in this portfolio, this one is more straightforward. Its value lies in showing a clear GeoAI deployment workflow: selecting a suitable pretrained model, running detection on aerial imagery, and reviewing the resulting output as a GIS layer.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="card">
+          <span class="signal-label">What this project shows</span>
+          <h3>Pretrained model deployment</h3>
+          <p>
+            The project shows how a ready-to-use deep learning model can be applied in ArcGIS Pro without retraining or model adaptation.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Main result</span>
+          <h3>Structured palm detections</h3>
+          <p>
+            The output is a detection layer of palm trees represented as bounding boxes across the study area.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Software skills demonstrated</h2>
+        <p class="section-description">
+          This project is simpler than the others, so the page focuses only on the core technical skills that are actually visible in the workflow.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="card">
+          <h3>Model application</h3>
+          <ul>
+            <li>Selected a pretrained palm tree detection model.</li>
+            <li>Applied the model to high-resolution aerial imagery in ArcGIS Pro.</li>
+            <li>Ran an inference-based object detection workflow.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Output review</h3>
+          <ul>
+            <li>Generated palm tree detections as bounding box features.</li>
+            <li>Reviewed the result across the study area and in close-up view.</li>
+            <li>Used the output as a structured GIS-ready detection layer.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Workflow structure</h2>
+        <p class="section-description">
+          The workflow is short and direct, which matches the nature of the project.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="card">
+          <span class="signal-label">Stage 01</span>
+          <h3>Input imagery</h3>
+          <p>
+            High-resolution RGB aerial imagery of the study area was used as the input for palm tree detection.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Stage 02</span>
+          <h3>Pretrained detection</h3>
+          <p>
+            A palm tree detection model from ArcGIS Living Atlas was applied in ArcGIS Pro to generate object detections.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Stage 03</span>
+          <h3>Output generation</h3>
+          <p>
+            The model produced a detection layer of palm trees represented as bounding boxes.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Stage 04</span>
+          <h3>Visual review</h3>
+          <p>
+            The result was inspected both across the full study area and at close range to review the detected objects.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="outputs">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Key outputs</h2>
+        <p class="section-description">
+          These images show the main stages of the detection result: the input imagery, the broader detection pattern, and a close-up of the bounding boxes.
+        </p>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="image-block">
+          <img src="../images/palm-detection/palm-input.png" alt="Input imagery used for palm tree detection" />
+          <div class="caption">
+            High-resolution aerial imagery used as input for the pretrained palm tree detection workflow.
+          </div>
+        </article>
+
+        <article class="image-block">
+          <img src="../images/palm-detection/palm-detection.png" alt="Palm detection result across the study area" />
+          <div class="caption">
+            Study-area view of the palm tree detections generated by the model.
+          </div>
+        </article>
+
+        <article class="image-block">
+          <img src="../images/palm-detection/palm-closeup.png" alt="Close-up of palm tree detection bounding boxes" />
+          <div class="caption">
+            Close-up view of the detected palm trees represented as bounding boxes.
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Project value</span>
+          <h3>Simple but useful workflow</h3>
+          <p>
+            This project is less complex than the others, but it still shows an important practical skill: using a pretrained detector correctly and turning its output into a readable GIS layer.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Project outcome</h2>
+        <p class="section-description">
+          This project demonstrates a basic GeoAI inference workflow in ArcGIS Pro. The main software signals are pretrained model use, object detection execution, and interpretation of the resulting palm tree layer.
         </p>
       </div>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>Overview</h2>
-      <p>
-        This project demonstrates object detection using a pretrained deep learning model in ArcGIS Pro. The goal was to automatically detect palm trees in high-resolution aerial imagery and generate a feature layer representing the detected objects.
-      </p>
+  <footer class="footer">
+    <div class="container">
+      GeoAI & GIS Portfolio — Sophia (Zahra) Chehreghan
     </div>
-
-    <div class="section">
-      <h2>Study Area &amp; Data</h2>
-      <p>
-        The workflow used high-resolution RGB aerial imagery of Kolovai. The imagery contains vegetation patterns, agricultural plots, and clusters of palm trees, making it suitable for pretrained object detection.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Detection Workflow</h2>
-      <ul>
-        <li>Loaded Kolovai imagery in ArcGIS Pro.</li>
-        <li>Applied a pretrained Palm Tree Detection model from ArcGIS Living Atlas.</li>
-        <li>Executed the Detect Objects Using Deep Learning tool.</li>
-        <li>Generated bounding boxes representing detected palm trees.</li>
-        <li>Exported the detections as a feature class for further GIS analysis.</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Detection Settings</h2>
-      <p>
-        The detection was run with the pretrained model using the default workflow in ArcGIS Pro, including confidence-based filtering and Non Maximum Suppression (NMS) to reduce overlapping detections. During troubleshooting, system decimal formatting had to be corrected to ensure the model parameters were interpreted properly.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Tools Used</h2>
-      <ul>
-        <li>ArcGIS Pro</li>
-        <li>ArcGIS Living Atlas</li>
-        <li>Detect Objects Using Deep Learning</li>
-        <li>Pretrained object detection model</li>
-        <li>Raster analysis</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Results</h2>
-      <p style="margin-bottom: 20px;">
-        The model successfully detected a large number of palm trees across the study area. The resulting output demonstrates how pretrained deep learning models can be integrated into GIS workflows for automated feature extraction from imagery.
-      </p>
-
-      <div class="gallery">
-
-        <div class="gallery-item">
-          <img src="../images/palm-detection/palm-input.png" alt="Input imagery">
-          <div class="caption">High-resolution aerial imagery used as input for palm tree detection.</div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="../images/palm-detection/palm-detection.png" alt="Palm detection result">
-          <div class="caption">Palm trees detected using a pretrained deep learning model in ArcGIS Pro.</div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="../images/palm-detection/palm-closeup.png" alt="Palm detection close-up">
-          <div class="caption">Close-up view of detected palm trees represented as bounding boxes.</div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
+  </footer>
 
 </body>
 </html>
