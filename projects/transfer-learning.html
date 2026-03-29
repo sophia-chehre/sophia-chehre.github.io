@@ -3,140 +3,358 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Building Extraction with Transfer Learning</title>
+  <title>Building Detection with Transfer Learning | GeoAI & GIS Portfolio</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #f3f4f6;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted-light: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --hero-start: #0f172a;
+      --hero-end: #111827;
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --max-width: 1240px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      max-width: 1200px;
+      width: min(var(--max-width), calc(100% - 40px));
       margin: 0 auto;
-      padding: 48px 24px 80px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 28px;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: 600;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
     }
 
-    .hero {
-      margin-bottom: 40px;
-    }
-
-    .project-label {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #2563eb;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: 44px;
-      line-height: 1.15;
-      margin: 0 0 18px;
-    }
-
-    .intro {
-      max-width: 760px;
-      font-size: 19px;
-      color: #374151;
-      margin: 0 0 28px;
-    }
-
-    .button-row {
+    .topbar-inner {
       display: flex;
-      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
-    .button {
-      display: inline-block;
+    .nav a {
       text-decoration: none;
-      background: #2563eb;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 10px;
+      font-size: 14px;
       font-weight: 600;
-      transition: background 0.2s ease;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
+      color: white;
+      padding: 70px 0 62px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .back-link:hover {
+      color: #ffffff;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: #dbeafe;
+    }
+
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-summary {
+      margin: 0 0 24px;
+      max-width: 760px;
+      font-size: 18px;
+      color: #d1d5db;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
     }
 
     .button:hover {
-      background: #1d4ed8;
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .facts {
+      display: grid;
+      gap: 14px;
+    }
+
+    .fact {
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .fact:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: #93c5fd;
+    }
+
+    .fact-value {
+      font-size: 15px;
+      color: #e5e7eb;
     }
 
     .section {
-      margin-top: 56px;
+      padding: 62px 0;
     }
 
-    .section h2 {
-      font-size: 30px;
-      margin: 0 0 18px;
+    .section-head {
+      margin-bottom: 24px;
     }
 
-    .section p {
-      font-size: 17px;
-      color: #374151;
-      margin: 0 0 18px;
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .section-description {
+      margin: 0;
       max-width: 820px;
+      font-size: 17px;
+      color: var(--muted);
     }
 
+    .overview-grid,
     .skills-grid,
-    .workflow-grid {
+    .workflow-grid,
+    .evidence-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 22px;
+    }
+
+    .overview-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .workflow-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .evidence-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .card {
-      background: white;
-      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       padding: 22px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow);
     }
 
     .card h3 {
       margin: 0 0 10px;
       font-size: 20px;
+      line-height: 1.25;
     }
 
     .card p,
     .card ul {
       margin: 0;
-      color: #374151;
-      font-size: 16px;
+      font-size: 15px;
+      color: var(--muted);
     }
 
     .card ul {
       padding-left: 18px;
     }
 
+    .card ul li {
+      margin-bottom: 8px;
+    }
+
+    .signal-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
     .image-block {
-      margin-top: 28px;
-      background: white;
-      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow);
     }
 
     .image-block img {
       width: 100%;
-      display: block;
+      height: auto;
     }
 
     .image-block.training-block img {
@@ -146,260 +364,481 @@
     }
 
     .caption {
-      padding: 16px 18px 18px;
-      font-size: 15px;
-      color: #4b5563;
-      border-top: 1px solid #e5e7eb;
+      padding: 15px 18px 18px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted-light);
     }
 
     .note-box {
-      margin-top: 22px;
+      margin-top: 18px;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 18px;
+      font-size: 15px;
       color: #1e3a8a;
-      font-size: 16px;
-      max-width: 820px;
     }
 
-    @media (max-width: 900px) {
-      .container {
-        padding: 32px 18px 64px;
-      }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
 
-      h1 {
-        font-size: 34px;
-      }
+    .comparison-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
 
-      .intro {
-        font-size: 17px;
-      }
+    .comparison-content {
+      padding: 18px 18px 20px;
+    }
 
-      .skills-grid,
-      .workflow-grid {
+    .comparison-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--accent);
+    }
+
+    .comparison-content h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .comparison-content p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #111827, #0f172a);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.15;
+    }
+
+    .cta-box p {
+      margin: 0 0 22px;
+      max-width: 760px;
+      font-size: 17px;
+      color: #d1d5db;
+    }
+
+    .footer {
+      padding: 22px 0 46px;
+      font-size: 14px;
+      color: var(--muted-light);
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid {
         grid-template-columns: 1fr;
       }
 
-      .section h2 {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid,
+      .workflow-grid,
+      .evidence-grid,
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
+      }
+
+      .topbar-inner {
+        min-height: 60px;
+      }
+
+      .hero {
+        padding: 54px 0 48px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero-summary,
+      .section-description,
+      .cta-box p {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 50px 0;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .cta-box {
+        padding: 24px 20px;
+      }
+
+      .cta-box h2 {
         font-size: 26px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a class="back-link" href="../index.html">← Back to Portfolio</a>
 
-    <section class="hero">
-      <div class="project-label">Project 03</div>
-      <h1>Building Extraction with Transfer Learning</h1>
-      <p class="intro">
-        A pretrained deep learning model was fine-tuned with custom training samples in ArcGIS Pro
-        to improve building footprint extraction results and adapt the model to new imagery conditions.
-      </p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="../index.html">GeoAI & GIS Portfolio</a>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#results">Results</a>
+        <a href="#webapp">Web App</a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="button-row">
-        <a
-          class="button"
-          href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View Web App
-        </a>
+  <section class="hero">
+    <div class="container">
+      <a class="back-link" href="../index.html">← Back to Portfolio</a>
+
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Project 01 · Transfer Learning</div>
+          <h1>Building Detection with Transfer Learning</h1>
+          <p class="hero-summary">
+            This project focused on improving building footprint extraction by adapting a pretrained deep learning model in ArcGIS Pro.
+            Instead of relying on inference only, the workflow used custom training samples, model fine-tuning, and before/after comparison to show how transfer learning improved extraction quality under new imagery conditions.
+          </p>
+
+          <div class="tag-list">
+            <span class="tag">ArcGIS Pro</span>
+            <span class="tag">Transfer Learning</span>
+            <span class="tag">Building Footprints</span>
+            <span class="tag">Training Samples</span>
+            <span class="tag">Model Adaptation</span>
+            <span class="tag">Web App Presentation</span>
+          </div>
+
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Web App
+            </a>
+            <a class="button-secondary" href="#results">View Visual Results</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <h2>Quick project facts</h2>
+
+          <div class="facts">
+            <div class="fact">
+              <span class="fact-label">Primary focus</span>
+              <div class="fact-value">Model refinement instead of using a pretrained model unchanged</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Main software</span>
+              <div class="fact-value">ArcGIS Pro with deep learning training and inference workflow</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Key evidence</span>
+              <div class="fact-value">Training samples, training process, and before/after extraction comparison</div>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Output type</span>
+              <div class="fact-value">Improved building detection results presented in a compare web app</div>
+            </div>
+          </div>
+        </aside>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Project Focus</h2>
-      <p>
-        This project demonstrates a transfer learning workflow for improving building detection in ArcGIS Pro.
-        The goal was to move beyond a generic pretrained model and refine it with new training data so that
-        extraction quality better matched the target imagery and local building patterns.
-      </p>
-    </section>
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Project overview</h2>
+        <p class="section-description">
+          From a recruiter or GIS hiring perspective, the main value of this project is not just that a building extraction result was produced.
+          The stronger signal is that the workflow moved beyond a standard pretrained model and demonstrated model adaptation, training sample preparation, evaluation logic, and portfolio-ready result communication.
+        </p>
+      </div>
 
-    <section class="section">
-      <h2>Software Skills Demonstrated</h2>
+      <div class="overview-grid">
+        <article class="card">
+          <span class="signal-label">Why this project matters</span>
+          <h3>More than inference</h3>
+          <p>
+            This workflow goes beyond running a ready-made model. It shows that the model was adjusted to a new dataset through transfer learning rather than being accepted as-is.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Technical emphasis</span>
+          <h3>Adaptation to new imagery</h3>
+          <p>
+            The project focused on matching the model more closely to the target image context, using custom examples from the project area to improve extraction performance.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="signal-label">Visible outcome</span>
+          <h3>Baseline vs refined result</h3>
+          <p>
+            The most important proof of skill here is the comparison between the pretrained model output and the improved result after fine-tuning.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Software skills demonstrated</h2>
+        <p class="section-description">
+          The page is structured to make software capability visible quickly. The skills below are not generic claims but are directly tied to the workflow shown in the screenshots and final outputs.
+        </p>
+      </div>
+
       <div class="skills-grid">
-        <div class="card">
-          <h3>Deep Learning Workflow</h3>
+        <article class="card">
+          <h3>Deep learning workflow in ArcGIS Pro</h3>
           <ul>
-            <li>Worked with a pretrained building extraction model</li>
-            <li>Prepared custom training data for model improvement</li>
-            <li>Compared baseline and refined detection outputs</li>
+            <li>Worked with a pretrained building extraction model as a starting point.</li>
+            <li>Prepared the workflow for both training and inference rather than using a single run-only approach.</li>
+            <li>Organized outputs for visual evaluation and portfolio presentation.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>Training Data Preparation</h3>
+        <article class="card">
+          <h3>Training data preparation</h3>
           <ul>
-            <li>Reviewed input imagery and RGB extraction</li>
-            <li>Created training samples for transfer learning</li>
-            <li>Prepared data for model fine-tuning in ArcGIS Pro</li>
+            <li>Reviewed imagery and RGB preparation steps before model adaptation.</li>
+            <li>Created custom training samples to represent building patterns in the target area.</li>
+            <li>Prepared model inputs needed for transfer learning.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>Model Evaluation</h3>
+        <article class="card">
+          <h3>Model refinement and evaluation</h3>
           <ul>
-            <li>Assessed detection results before transfer learning</li>
-            <li>Tracked model training progress</li>
-            <li>Compared improvements after fine-tuning</li>
+            <li>Used transfer learning to improve extraction quality for a new dataset.</li>
+            <li>Tracked the model training phase as part of the technical workflow.</li>
+            <li>Compared baseline and refined outputs to assess improvement.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>Web-Based Presentation</h3>
+        <article class="card">
+          <h3>Web-based result communication</h3>
           <ul>
-            <li>Published results for interactive comparison</li>
-            <li>Used a web app to communicate model improvement</li>
-            <li>Structured outputs for portfolio presentation</li>
+            <li>Presented results through an ArcGIS compare web app.</li>
+            <li>Made the improvement legible beyond the desktop analysis environment.</li>
+            <li>Connected technical output to an easy-to-review visual comparison.</li>
           </ul>
-        </div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Workflow Summary</h2>
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Workflow structure</h2>
+        <p class="section-description">
+          The workflow below is arranged to highlight the main technical stages rather than retell the tutorial step by step. This makes the logic of the process easier to scan.
+        </p>
+      </div>
+
       <div class="workflow-grid">
-        <div class="card">
-          <h3>1. Input Review</h3>
+        <article class="card">
+          <span class="signal-label">Stage 01</span>
+          <h3>Input review and image preparation</h3>
           <p>
-            The workflow started with reviewing the source imagery and preparing the RGB input needed
-            for building extraction and training sample creation.
+            The project started with reviewing the source imagery and preparing the RGB representation needed for sample creation, interpretation, and model adaptation.
           </p>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>2. Sample Preparation</h3>
+        <article class="card">
+          <span class="signal-label">Stage 02</span>
+          <h3>Custom sample creation</h3>
           <p>
-            Custom training samples were created to represent the building patterns in the target dataset
-            and provide new examples for model refinement.
+            Training samples were created to represent the local building patterns and provide the model with examples from the new image context.
           </p>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>3. Transfer Learning</h3>
+        <article class="card">
+          <span class="signal-label">Stage 03</span>
+          <h3>Transfer learning and model training</h3>
           <p>
-            The pretrained model was fine-tuned using the new training data in ArcGIS Pro to improve
-            detection performance on the selected imagery.
+            The pretrained model was fine-tuned in ArcGIS Pro so that extraction behavior could be adjusted to the target imagery rather than remaining generic.
           </p>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>4. Result Comparison</h3>
+        <article class="card">
+          <span class="signal-label">Stage 04</span>
+          <h3>Before/after comparison</h3>
           <p>
-            Building extraction results were compared before and after transfer learning to evaluate
-            how model adaptation improved the final output.
+            Final evaluation focused on comparing the baseline extraction result with the refined output after transfer learning, making the effect of model adaptation visible.
           </p>
-        </div>
+        </article>
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Input Imagery</h2>
-      <p>
-        The project started with source imagery prepared for model adaptation. This stage established
-        the visual and spatial basis for both sample creation and later extraction comparison.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/transfer-learning/input-imagery.png" alt="Input imagery for transfer learning project" />
-        <div class="caption">
-          Source imagery used as the basis for training data preparation and building extraction improvement.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>RGB Extraction</h2>
-      <p>
-        RGB extraction was used to prepare the imagery in a suitable format for the deep learning workflow
-        and support consistent visual interpretation during model refinement.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/transfer-learning/rgb-extraction.png" alt="RGB extraction from source imagery" />
-        <div class="caption">
-          RGB-based image preparation step used as part of the model adaptation workflow.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Training Samples</h2>
-      <p>
-        Training samples were created to provide the model with examples from the target area. This step
-        is central to transfer learning because it helps adapt a general model to a new image context.
-      </p>
 
       <div class="note-box">
-        Transfer learning was used here to refine an existing model rather than training a new model entirely from scratch.
+        Transfer learning in this project was used to refine an existing model for a new dataset, not to build a deep learning workflow entirely from scratch. That distinction is important because it shows adaptation, evaluation, and practical model reuse.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Workflow evidence</h2>
+        <p class="section-description">
+          These images support the technical process: image preparation, training sample creation, and model training. They are placed here as evidence of workflow, not as decorative screenshots.
+        </p>
       </div>
 
-      <div class="image-block">
-        <img src="../images/transfer-learning/training-samples.png" alt="Training samples used for transfer learning" />
-        <div class="caption">
-          Custom training samples prepared to improve building footprint detection in the target imagery.
+      <div class="evidence-grid">
+        <article class="image-block">
+          <img src="../images/transfer-learning/input-imagery.png" alt="Input imagery for transfer learning project" />
+          <div class="caption">
+            Source imagery used as the basis for training sample creation and later building extraction comparison.
+          </div>
+        </article>
+
+        <article class="image-block">
+          <img src="../images/transfer-learning/rgb-extraction.png" alt="RGB extraction from source imagery" />
+          <div class="caption">
+            RGB preparation step used to support image interpretation and workflow consistency before model refinement.
+          </div>
+        </article>
+
+        <article class="image-block">
+          <img src="../images/transfer-learning/training-samples.png" alt="Training samples used for transfer learning" />
+          <div class="caption">
+            Custom training samples created to adapt the model to local building patterns in the target imagery.
+          </div>
+        </article>
+
+        <article class="image-block training-block">
+          <img src="../images/transfer-learning/training-process.png" alt="Model training process in ArcGIS Pro" />
+          <div class="caption">
+            Model training stage in ArcGIS Pro showing the fine-tuning process used to refine the pretrained building extraction model.
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Result comparison</h2>
+        <p class="section-description">
+          The strongest evidence in this project is the contrast between the baseline result and the refined output after transfer learning. That comparison makes the value of the workflow easy to understand in a short review.
+        </p>
+      </div>
+
+      <div class="comparison-grid">
+        <article class="comparison-card">
+          <img src="../images/transfer-learning/baseline-result.png" alt="Building detection result before transfer learning" />
+          <div class="comparison-content">
+            <span class="comparison-kicker">Before transfer learning</span>
+            <h3>Baseline extraction result</h3>
+            <p>
+              This output shows the behavior of the pretrained model before any local adaptation. It serves as the reference point for evaluating the impact of transfer learning.
+            </p>
+          </div>
+        </article>
+
+        <article class="comparison-card">
+          <img src="../images/transfer-learning/final-result.png" alt="Building detection result after transfer learning" />
+          <div class="comparison-content">
+            <span class="comparison-kicker">After transfer learning</span>
+            <h3>Refined extraction result</h3>
+            <p>
+              This output reflects the model after fine-tuning with custom samples. The comparison shows how transfer learning improved alignment with the target imagery conditions.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="webapp">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Interactive result review</h2>
+        <p>
+          The compare web app makes the improvement easier to inspect interactively. It is included here to support fast visual review of the baseline and refined outputs, especially for readers who want direct evidence rather than long explanation.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="button"
+            href="https://irpud.maps.arcgis.com/apps/instant/compare/index.html?appid=68f6ae6e7ea54b0eb540ba0112dfa756"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Compare Web App
+          </a>
+
+          <a class="button-secondary" href="../index.html">
+            Back to Portfolio
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Before Transfer Learning</h2>
-      <p>
-        The baseline result shows the performance of the pretrained model before any adaptation. This provides
-        the reference point for evaluating how much the fine-tuning process improves extraction quality.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/transfer-learning/baseline-result.png" alt="Building detection result before transfer learning" />
-        <div class="caption">
-          Building extraction result produced by the pretrained model before transfer learning.
-        </div>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Project outcome</h2>
+        <p class="section-description">
+          This project demonstrates practical use of transfer learning for building extraction in ArcGIS Pro. The main software signals are model adaptation, training sample preparation, training-stage awareness, comparative evaluation, and clear communication of results through a web-based comparison interface.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Model Training</h2>
-      <p>
-        After preparing the samples, the model was fine-tuned in ArcGIS Pro. The training process reflects
-        the computational stage where the original pretrained model was adapted to the new dataset.
-      </p>
+  <footer class="footer">
+    <div class="container">
+      GeoAI & GIS Portfolio — Sophia (Zahra) Chehreghan
+    </div>
+  </footer>
 
-      <div class="image-block training-block">
-        <img src="../images/transfer-learning/training-process.png" alt="Model training process in ArcGIS Pro" />
-        <div class="caption">
-          Training process used to fine-tune the pretrained building extraction model with custom samples.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>After Transfer Learning</h2>
-      <p>
-        The final result demonstrates the effect of model refinement. Compared with the baseline output,
-        the fine-tuned model provides a stronger extraction result aligned more closely with the target imagery.
-      </p>
-
-      <div class="image-block">
-        <img src="../images/transfer-learning/final-result.png" alt="Building detection result after transfer learning" />
-        <div class="caption">
-          Final building extraction result after transfer learning and model refinement.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Project Outcome</h2>
-      <p>
-        This project shows how transfer learning can improve building extraction without building a deep learning
-        workflow entirely from the beginning. It demonstrates model adaptation, training sample preparation,
-        comparative evaluation, and clear presentation of results in a portfolio-ready format.
-      </p>
-    </section>
-  </div>
 </body>
 </html>
