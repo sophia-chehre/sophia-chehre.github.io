@@ -61,18 +61,9 @@
     .topbar-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 20px;
       min-height: 68px;
-    }
-
-    .brand {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      text-decoration: none;
-      color: var(--text);
-      white-space: nowrap;
     }
 
     .nav {
@@ -90,7 +81,10 @@
       transition: color 0.2s ease;
     }
 
-    .nav a:hover,
+    .nav a:hover {
+      color: var(--accent);
+    }
+
     .nav a.active {
       color: var(--accent);
     }
@@ -526,7 +520,6 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="index.html">GeoAI & GIS Portfolio</a>
       <nav class="nav">
         <a href="index.html">Portfolio</a>
         <a href="cv.html" class="active">CV</a>
