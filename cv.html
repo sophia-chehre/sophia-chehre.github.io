@@ -14,14 +14,13 @@
       --bg: #f3f4f6;
       --surface: #ffffff;
       --surface-soft: #f8fafc;
+      --surface-accent: #eef4ff;
       --text: #111827;
       --muted: #4b5563;
       --muted-light: #6b7280;
       --border: #e5e7eb;
       --accent: #2563eb;
       --accent-dark: #1d4ed8;
-      --hero-start: #0f172a;
-      --hero-end: #111827;
       --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
       --radius-xl: 24px;
       --radius-lg: 18px;
@@ -96,55 +95,58 @@
       color: var(--accent);
     }
 
-    .hero {
-      background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
-      color: white;
-      padding: 78px 0 62px;
+    .page-header {
+      padding: 42px 0 22px;
     }
 
-    .hero-grid {
+    .header-card {
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 34px;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 30px;
+      gap: 28px;
       align-items: start;
     }
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--surface-accent);
+      border: 1px solid #dbeafe;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.4px;
       text-transform: uppercase;
-      color: #dbeafe;
+      color: var(--accent);
     }
 
-    .hero h1 {
-      margin: 0 0 14px;
-      font-size: 42px;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+    .header-card h1 {
+      margin: 0 0 10px;
+      font-size: 46px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
     }
 
-    .hero .subtitle {
+    .header-subtitle {
       margin: 0 0 18px;
-      font-size: 19px;
-      color: #d1d5db;
+      font-size: 21px;
       font-weight: 700;
+      color: var(--muted);
     }
 
-    .hero .intro {
+    .header-intro {
       margin: 0;
       max-width: 760px;
       font-size: 17px;
-      color: #cbd5e1;
+      color: var(--muted);
     }
 
-    .hero-actions {
+    .header-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -152,17 +154,22 @@
     }
 
     .button,
-    .button-secondary {
+    .button-secondary,
+    .mini-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .button,
+    .button-secondary {
       min-height: 48px;
       padding: 12px 18px;
       border-radius: 12px;
       font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
     .button {
@@ -178,65 +185,75 @@
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
     .button-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
+      border-color: #cbd5e1;
       transform: translateY(-1px);
     }
 
-    .hero-panel {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-xl);
-      padding: 24px;
+    .mini-button {
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: var(--surface-accent);
+      border: 1px solid #dbeafe;
+      color: #1e3a8a;
     }
 
-    .hero-panel h2 {
-      margin: 0 0 14px;
-      font-size: 18px;
-      color: #ffffff;
+    .mini-button:hover {
+      transform: translateY(-1px);
+      background: #dbeafe;
     }
 
-    .hero-panel p {
-      margin: 0 0 18px;
-      font-size: 15px;
-      color: #d1d5db;
+    .contact-panel {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
     }
 
-    .hero-meta {
+    .contact-panel h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .contact-list {
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
 
-    .hero-meta-item {
+    .contact-item {
       padding: 14px 16px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: white;
+      border: 1px solid var(--border);
     }
 
-    .hero-meta-label {
+    .contact-label {
       display: block;
       margin-bottom: 4px;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.35px;
       text-transform: uppercase;
-      color: #93c5fd;
+      color: var(--accent);
     }
 
-    .hero-meta-value {
-      font-size: 14px;
-      color: #e5e7eb;
+    .contact-value {
+      font-size: 15px;
+      color: var(--text);
       font-weight: 700;
+      word-break: break-word;
     }
 
     .section {
-      padding: 64px 0;
+      padding: 38px 0 64px;
     }
 
     .section-head {
@@ -363,7 +380,8 @@
       gap: 20px;
     }
 
-    .experience-card {
+    .experience-card,
+    .education-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
@@ -371,7 +389,8 @@
       padding: 26px;
     }
 
-    .experience-top {
+    .experience-top,
+    .education-top {
       display: flex;
       justify-content: space-between;
       gap: 24px;
@@ -380,14 +399,16 @@
       flex-wrap: wrap;
     }
 
-    .experience-card h3 {
+    .experience-card h3,
+    .education-card h3 {
       margin: 0 0 6px;
       font-size: 24px;
       line-height: 1.15;
       letter-spacing: -0.02em;
     }
 
-    .experience-role {
+    .experience-role,
+    .education-meta {
       margin: 0;
       font-size: 16px;
       color: var(--muted);
@@ -401,14 +422,16 @@
       white-space: nowrap;
     }
 
-    .experience-card ul {
+    .experience-card ul,
+    .education-card ul {
       margin: 0 0 18px;
       padding-left: 18px;
       color: var(--muted);
       font-size: 15px;
     }
 
-    .experience-card li {
+    .experience-card li,
+    .education-card li {
       margin-bottom: 8px;
     }
 
@@ -428,77 +451,11 @@
       color: #334155;
     }
 
-    .education-grid,
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .edu-card,
-    .cert-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 24px;
-      height: 100%;
-    }
-
-    .edu-card h3,
-    .cert-card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    .edu-meta,
-    .cert-meta {
-      margin: 0 0 12px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .edu-card p,
-    .cert-card p {
-      margin: 0;
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    .cv-cta {
-      background: linear-gradient(135deg, #ffffff, #f8fafc);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .cv-cta h2 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-
-    .cv-cta p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 720px;
-    }
-
-    .cta-actions {
+    .card-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      margin-top: 16px;
     }
 
     .footer {
@@ -509,10 +466,8 @@
     }
 
     @media (max-width: 1100px) {
-      .hero-grid,
-      .skill-map-grid,
-      .education-grid,
-      .cert-grid {
+      .header-card,
+      .skill-map-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -530,23 +485,27 @@
         gap: 14px;
       }
 
-      .hero {
-        padding: 64px 0 52px;
+      .page-header {
+        padding: 28px 0 10px;
       }
 
-      .hero h1 {
+      .header-card {
+        padding: 24px;
+      }
+
+      .header-card h1 {
         font-size: 34px;
       }
 
-      .hero .subtitle,
-      .hero .intro,
+      .header-subtitle,
+      .header-intro,
       .section-description,
       .summary-card p {
         font-size: 16px;
       }
 
       .section {
-        padding: 52px 0;
+        padding: 28px 0 52px;
       }
 
       .section-title {
@@ -554,18 +513,16 @@
       }
 
       .experience-card,
+      .education-card,
       .summary-card,
       .skill-map-card,
-      .edu-card,
-      .cert-card,
-      .cv-cta {
+      .contact-panel {
         padding: 22px;
       }
 
       .experience-card h3,
-      .skill-map-card h3,
-      .edu-card h3,
-      .cert-card h3 {
+      .education-card h3,
+      .skill-map-card h3 {
         font-size: 21px;
       }
     }
@@ -585,46 +542,44 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">CV & Professional Profile</div>
-        <h1>Sophia (Zahra) Chehreghan</h1>
-        <p class="subtitle">Spatial Planner</p>
-        <p class="intro">
-          This page expands on my PDF CV by presenting how technical GIS and GeoAI work, planning-oriented analysis,
-          project coordination, and applied outputs connect across my academic, project, and startup experience.
-        </p>
+  <section class="page-header">
+    <div class="container">
+      <div class="header-card">
+        <div>
+          <div class="eyebrow">CV & Professional Profile</div>
+          <h1>Sophia (Zahra) Chehreghan</h1>
+          <p class="header-subtitle">Spatial Planner</p>
+          <p class="header-intro">
+            This page expands on my PDF CV by showing how technical GIS and GeoAI work, planning-oriented analysis,
+            project coordination, and applied outputs connect across academic, project-based, and startup experience.
+          </p>
 
-        <div class="hero-actions">
-          <a class="button" href="assets/documents/Sophia_CV.pdf" target="_blank">Download PDF CV</a>
-          <a class="button-secondary" href="index.html#projects">View Portfolio</a>
-          <a class="button-secondary" href="https://www.linkedin.com/in/sophia-chehre" target="_blank" rel="noopener">LinkedIn</a>
+          <div class="header-actions">
+            <a class="button" href="assets/documents/Sophia_CV.pdf" target="_blank">Download PDF CV</a>
+          </div>
         </div>
+
+        <aside class="contact-panel">
+          <h2>Contact details</h2>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-label">Location</span>
+              <div class="contact-value">Bochum, Germany</div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">Email</span>
+              <div class="contact-value">zahra.chehreghan@tu-dortmund.de</div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">Phone</span>
+              <div class="contact-value">+49 176 30579604</div>
+            </div>
+          </div>
+        </aside>
       </div>
-
-      <aside class="hero-panel">
-        <h2>Profile snapshot</h2>
-        <p>
-          My work combines spatial planning, GIS, GeoAI workflows, and practical coordination experience across real projects,
-          startup environments, and web-based portfolio presentation.
-        </p>
-
-        <div class="hero-meta">
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Location</span>
-            <div class="hero-meta-value">Bochum, Germany</div>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Focus</span>
-            <div class="hero-meta-value">Spatial Planning · GIS · GeoAI · Applied Analysis</div>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Portfolio theme</span>
-            <div class="hero-meta-value">Technical workflows + planning context + real outputs</div>
-          </div>
-        </div>
-      </aside>
     </div>
   </section>
 
@@ -772,6 +727,10 @@
             <span class="tag">Planning Analysis</span>
             <span class="tag">Roadmap Design</span>
           </div>
+
+          <div class="card-actions">
+            <a class="mini-button" href="assets/documents/Catalyst_BPP_Sophia_Chehreghan_Certificate_20260223.pdf" target="_blank">View Certificate</a>
+          </div>
         </article>
 
         <article class="experience-card">
@@ -835,88 +794,50 @@
         </div>
       </div>
 
-      <div class="education-grid">
-        <article class="edu-card">
-          <h3>MSc Spatial Planning</h3>
-          <p class="edu-meta">TU Dortmund · Present</p>
-          <p>
-            Ongoing master’s studies with a focus on spatial planning, urban transformation, and applied analytical work.
-          </p>
+      <div class="experience-grid">
+        <article class="education-card">
+          <div class="education-top">
+            <div>
+              <h3>MSc Spatial Planning</h3>
+              <p class="education-meta">TU Dortmund · Present</p>
+            </div>
+          </div>
+
+          <ul>
+            <li>Ongoing master’s studies with a focus on spatial planning, urban transformation, and applied analytical work.</li>
+          </ul>
         </article>
 
-        <article class="edu-card">
-          <h3>Digital Technology Management (DLab)</h3>
-          <p class="edu-meta">TU Dortmund</p>
-          <p>
-            33.5 ECTS | Completed June 2025<br>
-            Three-semester program
-          </p>
+        <article class="education-card">
+          <div class="education-top">
+            <div>
+              <h3>Digital Technology Management (DLab)</h3>
+              <p class="education-meta">TU Dortmund</p>
+            </div>
+          </div>
+
+          <ul>
+            <li>33.5 ECTS | Completed June 2025</li>
+            <li>Three-semester program</li>
+          </ul>
+
+          <div class="card-actions">
+            <a class="mini-button" href="assets/documents/DLAB_certificate.pdf" target="_blank">View Certificate</a>
+          </div>
         </article>
 
-        <article class="edu-card">
-          <h3>MSc Urban Planning</h3>
-          <p class="edu-meta">Iran University of Science and Technology · Graduated 2019</p>
-          <p>
-            Earlier academic background in urban planning, forming the foundation for later GIS, planning, and applied spatial analysis work.
-          </p>
+        <article class="education-card">
+          <div class="education-top">
+            <div>
+              <h3>MSc Urban Planning</h3>
+              <p class="education-meta">Iran University of Science and Technology · Graduated 2019</p>
+            </div>
+          </div>
+
+          <ul>
+            <li>Earlier academic background in urban planning, forming the foundation for later GIS, planning, and applied spatial analysis work.</li>
+          </ul>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="certificates">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Certificates</h2>
-          <p class="section-description">
-            Selected credentials that support the combination of planning, project work, and interdisciplinary development.
-          </p>
-        </div>
-      </div>
-
-      <div class="cert-grid">
-        <article class="cert-card">
-          <h3>Business Pilot Project Certificate</h3>
-          <p class="cert-meta">Catalyst Centre / CSCP · February 2026</p>
-          <p>
-            Awarded for active and outstanding participation in designing an incentive-based circular rental model and implementation roadmap for the Future Startup Centre Krefeld.
-          </p>
-        </article>
-
-        <article class="cert-card">
-          <h3>Certificate in Digital Technology Management</h3>
-          <p class="cert-meta">TU Dortmund / DLab · June 2025</p>
-          <p>
-            Certificate confirming completion of the DLab program, combining innovation, entrepreneurship, and digital technology management in a three-semester structure.
-          </p>
-        </article>
-
-        <article class="cert-card">
-          <h3>Project Management Certificates</h3>
-          <p class="cert-meta">Google / Microsoft / LinkedIn Learning</p>
-          <p>
-            Supporting training in project planning, execution, and structured coordination methods relevant to interdisciplinary and startup-oriented work.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="cv-download">
-    <div class="container">
-      <div class="cv-cta">
-        <div>
-          <h2>Download the formal CV or continue to the portfolio</h2>
-          <p>
-            The PDF version stays concise for applications, while this page gives a broader view of how my work, skills, and project contexts connect.
-          </p>
-        </div>
-
-        <div class="cta-actions">
-          <a class="button" href="assets/documents/Sophia_CV.pdf" target="_blank">Download CV</a>
-          <a class="button-secondary" href="index.html#projects">View Projects</a>
-        </div>
       </div>
     </div>
   </section>
