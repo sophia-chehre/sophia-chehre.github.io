@@ -62,18 +62,9 @@
     .topbar-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 20px;
       min-height: 68px;
-    }
-
-    .brand {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      text-decoration: none;
-      color: var(--text);
-      white-space: nowrap;
     }
 
     .nav {
@@ -93,6 +84,10 @@
 
     .nav a:hover {
       color: var(--accent);
+    }
+
+    .nav a.active {
+      color: var(--text);
     }
 
     .hero {
@@ -521,13 +516,10 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="#">GeoAI & GIS Portfolio</a>
-     <nav class="nav">
-  <a href="index.html#overview">Overview</a>
-  <a href="index.html#projects">Projects</a>
-  <a href="cv.html">CV</a>
-  <a href="https://www.linkedin.com/in/sophia-chehre" target="_blank" rel="noopener">LinkedIn</a>
-</nav>
+      <nav class="nav">
+        <a class="active" href="index.html">Portfolio</a>
+        <a href="cv.html">CV</a>
+      </nav>
     </div>
   </header>
 
