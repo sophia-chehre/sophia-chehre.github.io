@@ -96,7 +96,7 @@
     }
 
     .page-header {
-      padding: 42px 0 22px;
+      padding: 30px 0 14px;
     }
 
     .header-card {
@@ -104,21 +104,21 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
-      padding: 34px;
+      padding: 26px;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 22px;
       align-items: start;
     }
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 16px;
-      padding: 8px 12px;
+      margin-bottom: 12px;
+      padding: 7px 11px;
       border-radius: 999px;
       background: var(--surface-accent);
       border: 1px solid #dbeafe;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.4px;
       text-transform: uppercase;
@@ -126,35 +126,34 @@
     }
 
     .header-card h1 {
-      margin: 0 0 10px;
-      font-size: 46px;
-      line-height: 1.05;
+      margin: 0 0 8px;
+      font-size: 40px;
+      line-height: 1.04;
       letter-spacing: -0.03em;
     }
 
     .header-subtitle {
-      margin: 0 0 18px;
-      font-size: 21px;
+      margin: 0 0 10px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--muted);
     }
 
-    .header-intro {
+    .header-line {
       margin: 0;
       max-width: 760px;
-      font-size: 17px;
+      font-size: 16px;
       color: var(--muted);
     }
 
     .header-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
+      gap: 12px;
+      margin-top: 20px;
     }
 
     .button,
-    .button-secondary,
     .mini-button {
       display: inline-flex;
       align-items: center;
@@ -164,15 +163,11 @@
       transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
-    .button,
-    .button-secondary {
-      min-height: 48px;
-      padding: 12px 18px;
+    .button {
+      min-height: 46px;
+      padding: 11px 18px;
       border-radius: 12px;
       font-size: 15px;
-    }
-
-    .button {
       background: var(--accent);
       color: white;
       border: 1px solid var(--accent);
@@ -181,17 +176,6 @@
     .button:hover {
       background: var(--accent-dark);
       border-color: var(--accent-dark);
-      transform: translateY(-1px);
-    }
-
-    .button-secondary {
-      background: white;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .button-secondary:hover {
-      border-color: #cbd5e1;
       transform: translateY(-1px);
     }
 
@@ -214,31 +198,34 @@
       background: var(--surface-soft);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 18px;
     }
 
     .contact-panel h2 {
-      margin: 0 0 16px;
-      font-size: 20px;
+      margin: 0 0 12px;
+      font-size: 19px;
       line-height: 1.15;
     }
 
-    .contact-list {
+    .contact-compact {
       display: grid;
-      gap: 14px;
+      gap: 10px;
     }
 
-    .contact-item {
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: white;
-      border: 1px solid var(--border);
+    .contact-row {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     .contact-label {
       display: block;
-      margin-bottom: 4px;
-      font-size: 12px;
+      margin-bottom: 2px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.35px;
       text-transform: uppercase;
@@ -246,14 +233,21 @@
     }
 
     .contact-value {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text);
       font-weight: 700;
       word-break: break-word;
     }
 
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
     .section {
-      padding: 38px 0 64px;
+      padding: 28px 0 60px;
     }
 
     .section-head {
@@ -261,7 +255,7 @@
       align-items: end;
       justify-content: space-between;
       gap: 24px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .section-title {
@@ -486,11 +480,11 @@
       }
 
       .page-header {
-        padding: 28px 0 10px;
+        padding: 22px 0 10px;
       }
 
       .header-card {
-        padding: 24px;
+        padding: 22px;
       }
 
       .header-card h1 {
@@ -498,14 +492,14 @@
       }
 
       .header-subtitle,
-      .header-intro,
+      .header-line,
       .section-description,
       .summary-card p {
         font-size: 16px;
       }
 
       .section {
-        padding: 28px 0 52px;
+        padding: 22px 0 52px;
       }
 
       .section-title {
@@ -537,7 +531,6 @@
         <a href="index.html#overview">Overview</a>
         <a href="index.html#projects">Projects</a>
         <a href="cv.html" class="active">CV</a>
-        <a href="https://www.linkedin.com/in/sophia-chehre" target="_blank" rel="noopener">LinkedIn</a>
       </nav>
     </div>
   </header>
@@ -549,9 +542,8 @@
           <div class="eyebrow">CV & Professional Profile</div>
           <h1>Sophia (Zahra) Chehreghan</h1>
           <p class="header-subtitle">Spatial Planner</p>
-          <p class="header-intro">
-            This page expands on my PDF CV by showing how technical GIS and GeoAI work, planning-oriented analysis,
-            project coordination, and applied outputs connect across academic, project-based, and startup experience.
+          <p class="header-line">
+            Spatial Planner with a technical portfolio in GIS, GeoAI, deep learning, and applied spatial analysis.
           </p>
 
           <div class="header-actions">
@@ -562,21 +554,25 @@
         <aside class="contact-panel">
           <h2>Contact details</h2>
 
-          <div class="contact-list">
-            <div class="contact-item">
+          <div class="contact-compact">
+            <div class="contact-row">
               <span class="contact-label">Location</span>
               <div class="contact-value">Bochum, Germany</div>
             </div>
 
-            <div class="contact-item">
+            <div class="contact-row">
               <span class="contact-label">Email</span>
               <div class="contact-value">zahra.chehreghan@tu-dortmund.de</div>
             </div>
 
-            <div class="contact-item">
+            <div class="contact-row">
               <span class="contact-label">Phone</span>
               <div class="contact-value">+49 176 30579604</div>
             </div>
+          </div>
+
+          <div class="contact-actions">
+            <a class="mini-button" href="https://www.linkedin.com/in/sophia-chehre" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </aside>
       </div>
@@ -838,6 +834,7 @@
             <li>Earlier academic background in urban planning, forming the foundation for later GIS, planning, and applied spatial analysis work.</li>
           </ul>
         </article>
+
       </div>
     </div>
   </section>
