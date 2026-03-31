@@ -1,1 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV | Sophia (Zahra) Chehreghan</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f3f4f6;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted-light: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --hero-start: #0f172a;
+      --hero-end: #111827;
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --max-width: 1240px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--accent);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
+      color: white;
+      padding: 78px 0 62px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: #dbeafe;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: 42px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      margin: 0 0 18px;
+      font-size: 19px;
+      color: #d1d5db;
+      font-weight: 700;
+    }
+
+    .hero .intro {
+      margin: 0;
+      max-width: 760px;
+      font-size: 17px;
+      color: #cbd5e1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .hero-panel p {
+      margin: 0 0 18px;
+      font-size: 15px;
+      color: #d1d5db;
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-meta-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-meta-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      color: #93c5fd;
+    }
+
+    .hero-meta-value {
+      font-size: 14px;
+      color: #e5e7eb;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .section-description {
+      margin: 0;
+      max-width: 760px;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .summary-card p {
+      margin: 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .skill-map-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-map-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .skill-map-label {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--accent);
+    }
+
+    .skill-map-card h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .linked-block {
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+    }
+
+    .linked-title {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.35px;
+      color: var(--muted-light);
+    }
+
+    .linked-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .linked-item {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: #1e3a8a;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .experience-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .experience-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .experience-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .experience-card h3 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .experience-role {
+      margin: 0;
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .experience-period {
+      font-size: 14px;
+      color: var(--muted-light);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .experience-card ul {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .experience-card li {
+      margin-bottom: 8px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .education-grid,
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .edu-card,
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      height: 100%;
+    }
+
+    .edu-card h3,
+    .cert-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .edu-meta,
+    .cert-meta {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .edu-card p,
+    .cert-card p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .cv-cta {
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cv-cta h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .cv-cta p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 720px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer {
+      padding: 24px 0 48px;
+      color: var(--muted-light);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .skill-map-grid,
+      .education-grid,
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
+      }
+
+      .topbar-inner {
+        min-height: 60px;
+      }
+
+      .nav {
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 64px 0 52px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero .subtitle,
+      .hero .intro,
+      .section-description,
+      .summary-card p {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .experience-card,
+      .summary-card,
+      .skill-map-card,
+      .edu-card,
+      .cert-card,
+      .cv-cta {
+        padding: 22px;
+      }
+
+      .experience-card h3,
+      .skill-map-card h3,
+      .edu-card h3,
+      .cert-card h3 {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">GeoAI & GIS Portfolio</a>
+      <nav class="nav">
+        <a href="index.html#overview">Overview</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="cv.html" class="active">CV</a>
+        <a href="https://www.linkedin.com/in/sophia-chehre" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">CV & Professional Profile</div>
+        <h1>Sophia (Zahra) Chehreghan</h1>
+        <p class="subtitle">Spatial Planner</p>
+        <p class="intro">
+          This page expands on my PDF CV by presenting how technical GIS and GeoAI work, planning-oriented analysis,
+          project coordination, and applied outputs connect across my academic, project, and startup experience.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="assets/documents/Sophia_CV.pdf" target="_blank">Download PDF CV</a>
+          <a class="button-secondary" href="index.html#projects">View Portfolio</a>
+          <a class="button-secondary" href="https://www.linkedin.com/in/sophia-chehre" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h2>Profile snapshot</h2>
+        <p>
+          My work combines spatial planning, GIS, GeoAI workflows, and practical coordination experience across real projects,
+          startup environments, and web-based portfolio presentation.
+        </p>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Location</span>
+            <div class="hero-meta-value">Bochum, Germany</div>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Focus</span>
+            <div class="hero-meta-value">Spatial Planning · GIS · GeoAI · Applied Analysis</div>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Portfolio theme</span>
+            <div class="hero-meta-value">Technical workflows + planning context + real outputs</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="summary">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Profile summary</h2>
+          <p class="section-description">
+            A broader web version of my CV, designed to make technical strengths and applied experience easier to read than a PDF.
+          </p>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <p>
+          I combine GeoAI workflows and spatial analysis with an urban planning perspective to extract, refine, and interpret spatial data.
+          My work connects technical GIS processes with real-world planning and project coordination contexts. Alongside technical portfolio
+          work in ArcGIS Pro and ArcGIS Online, I also bring experience from interdisciplinary project environments involving research,
+          structured planning, startup support, and collaborative tools such as Airtable and Miro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skill-map">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Applied skill map</h2>
+          <p class="section-description">
+            Instead of listing skills in isolation, this section shows how they connect to projects, experience, and outputs.
+          </p>
+        </div>
+      </div>
+
+      <div class="skill-map-grid">
+        <article class="skill-map-card">
+          <p class="skill-map-label">Cluster 01</p>
+          <h3>GeoAI & Spatial Analysis</h3>
+
+          <div class="chip-group">
+            <span class="chip">ArcGIS Pro</span>
+            <span class="chip">Deep Learning</span>
+            <span class="chip">Transfer Learning</span>
+            <span class="chip">Raster Analysis</span>
+            <span class="chip">Model Evaluation</span>
+            <span class="chip">Feature Extraction</span>
+          </div>
+
+          <div class="linked-block">
+            <p class="linked-title">Applied in projects</p>
+            <div class="linked-list">
+              <a class="linked-item" href="projects/transfer-learning.html">Transfer Learning</a>
+              <a class="linked-item" href="projects/landcover.html">Land Cover</a>
+              <a class="linked-item" href="projects/landslide.html">Landslide</a>
+              <a class="linked-item" href="projects/textsam.html">TextSAM</a>
+              <a class="linked-item" href="projects/palm.html">Palm Detection</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-map-card">
+          <p class="skill-map-label">Cluster 02</p>
+          <h3>Planning & Coordination</h3>
+
+          <div class="chip-group">
+            <span class="chip">Stakeholder Coordination</span>
+            <span class="chip">Applied Research</span>
+            <span class="chip">Project Planning</span>
+            <span class="chip">Airtable</span>
+            <span class="chip">Miro</span>
+            <span class="chip">Workflow Structuring</span>
+          </div>
+
+          <div class="linked-block">
+            <p class="linked-title">Applied in experience</p>
+            <div class="linked-list">
+              <span class="linked-item">CSCP</span>
+              <span class="linked-item">ReMoLab</span>
+              <span class="linked-item">RohamRobotic</span>
+              <span class="linked-item">DLab</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-map-card">
+          <p class="skill-map-label">Cluster 03</p>
+          <h3>Delivery & Presentation</h3>
+
+          <div class="chip-group">
+            <span class="chip">ArcGIS Online</span>
+            <span class="chip">Instant Apps</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">GitHub Pages</span>
+            <span class="chip">Web Presentation</span>
+          </div>
+
+          <div class="linked-block">
+            <p class="linked-title">Connected outputs</p>
+            <div class="linked-list">
+              <a class="linked-item" href="index.html#projects">Portfolio Home</a>
+              <a class="linked-item" href="projects/transfer-learning.html">Project Pages</a>
+              <span class="linked-item">Web Apps</span>
+              <span class="linked-item">CV Page</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Selected experience</h2>
+          <p class="section-description">
+            Academic, project-based, and startup-related work that shaped both technical and coordination-oriented skills.
+          </p>
+        </div>
+      </div>
+
+      <div class="experience-grid">
+
+        <article class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Research Assistant – Circular Rental Model</h3>
+              <p class="experience-role">CSCP, Germany</p>
+            </div>
+            <div class="experience-period">2025–2026</div>
+          </div>
+
+          <ul>
+            <li>Contributed to the design of an incentive-based Circular Rental Agreement and implementation roadmap.</li>
+            <li>Supported stakeholder coordination and applied research in a real-world pilot project.</li>
+            <li>Connected planning-oriented analysis with practical implementation logic in an interdisciplinary context.</li>
+          </ul>
+
+          <div class="tag-list">
+            <span class="tag">Applied Research</span>
+            <span class="tag">Stakeholder Coordination</span>
+            <span class="tag">Planning Analysis</span>
+            <span class="tag">Roadmap Design</span>
+          </div>
+        </article>
+
+        <article class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Project Coordinator</h3>
+              <p class="experience-role">ReMoLab, Remote (Paris)</p>
+            </div>
+            <div class="experience-period">2021–2022</div>
+          </div>
+
+          <ul>
+            <li>Coordinated a pre-incubation program supporting early-stage startups.</li>
+            <li>Managed project planning, task tracking, and team structuring using Airtable and Miro.</li>
+            <li>Worked in a startup-oriented environment shaped by collaboration, iteration, and program coordination.</li>
+          </ul>
+
+          <div class="tag-list">
+            <span class="tag">Airtable</span>
+            <span class="tag">Miro</span>
+            <span class="tag">Project Planning</span>
+            <span class="tag">Startup Support</span>
+          </div>
+        </article>
+
+        <article class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Cofounder & Researcher</h3>
+              <p class="experience-role">RohamRobotic, Tallinn</p>
+            </div>
+            <div class="experience-period">2021–2023</div>
+          </div>
+
+          <ul>
+            <li>Developed a startup concept through validation, planning, and MVP development.</li>
+            <li>Integrated research, planning, and coordination in interdisciplinary teamwork.</li>
+            <li>Strengthened an applied understanding of innovation processes beyond purely technical work.</li>
+          </ul>
+
+          <div class="tag-list">
+            <span class="tag">Validation</span>
+            <span class="tag">MVP Development</span>
+            <span class="tag">Research</span>
+            <span class="tag">Coordination</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Education</h2>
+          <p class="section-description">
+            Formal academic training in planning, innovation, and interdisciplinary project-based learning.
+          </p>
+        </div>
+      </div>
+
+      <div class="education-grid">
+        <article class="edu-card">
+          <h3>MSc Spatial Planning</h3>
+          <p class="edu-meta">TU Dortmund · Present</p>
+          <p>
+            Ongoing master’s studies with a focus on spatial planning, urban transformation, and applied analytical work.
+          </p>
+        </article>
+
+        <article class="edu-card">
+          <h3>Digital Technology Management (DLab)</h3>
+          <p class="edu-meta">TU Dortmund</p>
+          <p>
+            33.5 ECTS | Completed June 2025<br>
+            Three-semester program
+          </p>
+        </article>
+
+        <article class="edu-card">
+          <h3>MSc Urban Planning</h3>
+          <p class="edu-meta">Iran University of Science and Technology · Graduated 2019</p>
+          <p>
+            Earlier academic background in urban planning, forming the foundation for later GIS, planning, and applied spatial analysis work.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="certificates">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Certificates</h2>
+          <p class="section-description">
+            Selected credentials that support the combination of planning, project work, and interdisciplinary development.
+          </p>
+        </div>
+      </div>
+
+      <div class="cert-grid">
+        <article class="cert-card">
+          <h3>Business Pilot Project Certificate</h3>
+          <p class="cert-meta">Catalyst Centre / CSCP · February 2026</p>
+          <p>
+            Awarded for active and outstanding participation in designing an incentive-based circular rental model and implementation roadmap for the Future Startup Centre Krefeld.
+          </p>
+        </article>
+
+        <article class="cert-card">
+          <h3>Certificate in Digital Technology Management</h3>
+          <p class="cert-meta">TU Dortmund / DLab · June 2025</p>
+          <p>
+            Certificate confirming completion of the DLab program, combining innovation, entrepreneurship, and digital technology management in a three-semester structure.
+          </p>
+        </article>
+
+        <article class="cert-card">
+          <h3>Project Management Certificates</h3>
+          <p class="cert-meta">Google / Microsoft / LinkedIn Learning</p>
+          <p>
+            Supporting training in project planning, execution, and structured coordination methods relevant to interdisciplinary and startup-oriented work.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cv-download">
+    <div class="container">
+      <div class="cv-cta">
+        <div>
+          <h2>Download the formal CV or continue to the portfolio</h2>
+          <p>
+            The PDF version stays concise for applications, while this page gives a broader view of how my work, skills, and project contexts connect.
+          </p>
+        </div>
+
+        <div class="cta-actions">
+          <a class="button" href="assets/documents/Sophia_CV.pdf" target="_blank">Download CV</a>
+          <a class="button-secondary" href="index.html#projects">View Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      CV — Sophia (Zahra) Chehreghan
+    </div>
+  </footer>
+
+</body>
+</html>
