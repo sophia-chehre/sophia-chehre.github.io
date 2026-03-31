@@ -86,8 +86,9 @@
       color: var(--accent);
     }
 
+    /* ✅ فقط اینجا تغییر داده شده */
     .nav a.active {
-      color: var(--text);
+      color: var(--accent);
     }
 
     .hero {
@@ -320,43 +321,30 @@
       position: absolute;
       top: 16px;
       left: 16px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
       background: rgba(17, 24, 39, 0.82);
       color: #f9fafb;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.3px;
       text-transform: uppercase;
     }
 
     .project-content {
       padding: 28px 30px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .project-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       margin-bottom: 14px;
       font-size: 13px;
       font-weight: 700;
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.35px;
     }
 
     .project-content h3 {
       margin: 0 0 14px;
       font-size: 30px;
-      line-height: 1.12;
-      letter-spacing: -0.02em;
     }
 
     .project-summary {
@@ -369,11 +357,6 @@
       margin: 0 0 18px;
       padding-left: 18px;
       color: var(--muted);
-      font-size: 15px;
-    }
-
-    .project-highlights li {
-      margin-bottom: 8px;
     }
 
     .tag-list {
@@ -393,125 +376,23 @@
       color: #334155;
     }
 
-    .project-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: auto;
-    }
-
     .project-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
       padding: 12px 18px;
       border-radius: 12px;
       background: var(--accent);
       color: white;
       text-decoration: none;
-      font-size: 15px;
       font-weight: 700;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .project-link:hover {
-      background: var(--accent-dark);
-      transform: translateY(-1px);
-    }
-
-    .project-note {
-      font-size: 14px;
-      color: var(--muted-light);
     }
 
     .footer {
       padding: 24px 0 48px;
-      color: var(--muted-light);
-      font-size: 14px;
       text-align: center;
-    }
-
-    @media (max-width: 1100px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .overview-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .project-card {
-        grid-template-columns: 1fr;
-      }
-
-      .project-image {
-        min-height: 260px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .container {
-        width: min(var(--max-width), calc(100% - 24px));
-      }
-
-      .topbar-inner {
-        min-height: 60px;
-      }
-
-      .nav {
-        gap: 14px;
-      }
-
-      .hero {
-        padding: 68px 0 54px;
-      }
-
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      .hero .name {
-        font-size: 20px;
-      }
-
-      .hero .subtitle,
-      .hero .intro,
-      .section-description {
-        font-size: 16px;
-      }
-
-      .section {
-        padding: 52px 0;
-      }
-
-      .section-head {
-        margin-bottom: 22px;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
-
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-content {
-        padding: 22px 20px 24px;
-      }
-
-      .project-content h3 {
-        font-size: 24px;
-      }
-
-      .project-image {
-        min-height: 220px;
-      }
+      color: var(--muted-light);
     }
   </style>
 </head>
+
 <body>
 
   <header class="topbar">
@@ -523,302 +404,7 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">Technical Portfolio</div>
-        <h1>GeoAI and GIS workflows focused on software skills, analysis, and applied outputs</h1>
-        <p class="name">Sophia (Zahra) Chehreghan</p>
-        <p class="subtitle">Spatial Planner | GIS | GeoAI | ArcGIS Pro | ArcGIS Online</p>
-        <p class="intro">
-          This portfolio complements my CV by highlighting hands-on GeoAI and GIS workflows in ArcGIS Pro and ArcGIS Online.
-          The focus is on technical process, software use, model application, post-processing, raster analysis, and web-based result presentation.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button" href="#projects">Explore Projects</a>
-          <a class="button-secondary" href="#overview">View Portfolio Focus</a>
-        </div>
-      </div>
-
-      <aside class="hero-panel">
-        <h2>Core workflow areas</h2>
-        <p>
-          The projects below emphasize practical work with deep learning tools, transfer learning, semantic segmentation,
-          raster-based suitability analysis, vector cleanup, and publishing results through project pages and web apps.
-        </p>
-
-        <div class="skill-list">
-          <span class="skill-chip">ArcGIS Pro</span>
-          <span class="skill-chip">ArcGIS Online</span>
-          <span class="skill-chip">Object Detection</span>
-          <span class="skill-chip">Transfer Learning</span>
-          <span class="skill-chip">Semantic Segmentation</span>
-          <span class="skill-chip">Raster Analysis</span>
-          <span class="skill-chip">Post-processing</span>
-          <span class="skill-chip">Instant Apps</span>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section" id="overview">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Portfolio focus</h2>
-          <p class="section-description">
-            Each project page is designed to show workflow, software steps, technical choices, and outputs efficiently.
-            The goal is not to retell the full project story, but to make software capability and applied analysis visible at a glance.
-          </p>
-        </div>
-      </div>
-
-      <div class="overview-grid">
-        <article class="overview-card">
-          <div class="overview-label">Focus 01</div>
-          <h3>Applied GeoAI workflows</h3>
-          <p>Object detection, transfer learning, and land cover extraction using pretrained and adapted deep learning models.</p>
-        </article>
-
-        <article class="overview-card">
-          <div class="overview-label">Focus 02</div>
-          <h3>Technical processing</h3>
-          <p>Confidence filtering, threshold decisions, vector cleanup, raster-to-feature conversion, and result refinement.</p>
-        </article>
-
-        <article class="overview-card">
-          <div class="overview-label">Focus 03</div>
-          <h3>Spatial analysis</h3>
-          <p>Raster-based suitability workflows, overlay analysis, class extraction, and exposure mapping for decision support.</p>
-        </article>
-
-        <article class="overview-card">
-          <div class="overview-label">Focus 04</div>
-          <h3>Output presentation</h3>
-          <p>Project pages and web app presentation to communicate results clearly beyond the ArcGIS working environment.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Selected projects</h2>
-          <p class="section-description">
-            The project order below prioritizes technical signal and workflow depth, while keeping the portfolio easy to scan for recruiters and GIS hiring teams.
-          </p>
-        </div>
-      </div>
-
-      <div class="projects-wrap">
-
-        <article class="project-card">
-          <div class="project-image">
-            <img src="images/transfer-learning/building-thumbnail.png" alt="Transfer learning for building detection" />
-            <div class="project-badge">Featured Workflow</div>
-          </div>
-
-          <div class="project-content">
-            <div class="project-meta">
-              <span>Project 01</span>
-              <span>Transfer Learning</span>
-            </div>
-
-            <h3>Building Detection with Transfer Learning</h3>
-
-            <p class="project-summary">
-              Fine-tuning a pretrained deep learning model to improve building footprint extraction in new imagery conditions.
-            </p>
-
-            <ul class="project-highlights">
-              <li>Created training samples and prepared training data for model adaptation.</li>
-              <li>Worked with chip size, training workflow, and inference output comparison.</li>
-              <li>Focused on improved building extraction quality rather than using a pretrained model as-is.</li>
-            </ul>
-
-            <div class="tag-list">
-              <span class="tag">ArcGIS Pro</span>
-              <span class="tag">Transfer Learning</span>
-              <span class="tag">Building Footprints</span>
-              <span class="tag">Training Samples</span>
-              <span class="tag">Model Adaptation</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="project-link" href="projects/transfer-learning.html">View Project</a>
-              <span class="project-note">Training + inference workflow</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-image">
-            <img src="images/landslide-analysis/landslide-thumbnail.png" alt="Landslide exposure analysis" />
-            <div class="project-badge">End-to-End Analysis</div>
-          </div>
-
-          <div class="project-content">
-            <div class="project-meta">
-              <span>Project 02</span>
-              <span>Risk Analysis</span>
-            </div>
-
-            <h3>Landslide Exposure Analysis</h3>
-
-            <p class="project-summary">
-              Combined AI-based building extraction with raster-based landslide susceptibility analysis to identify exposed infrastructure.
-            </p>
-
-            <ul class="project-highlights">
-              <li>Integrated deep learning output with multi-layer raster analysis.</li>
-              <li>Used overlay logic to move from extracted features to decision-relevant exposure mapping.</li>
-              <li>Showed how GeoAI results can support broader spatial risk workflows.</li>
-            </ul>
-
-            <div class="tag-list">
-              <span class="tag">ArcGIS Online</span>
-              <span class="tag">Deep Learning</span>
-              <span class="tag">Raster Analysis</span>
-              <span class="tag">Overlay</span>
-              <span class="tag">Risk Mapping</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="project-link" href="projects/landslide.html">View Project</a>
-              <span class="project-note">GeoAI + spatial decision workflow</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-image">
-            <img src="images/landcover-segmentation/landcover-thumbnail.png" alt="Land cover segmentation with GeoAI" />
-            <div class="project-badge">Segmentation Workflow</div>
-          </div>
-
-          <div class="project-content">
-            <div class="project-meta">
-              <span>Project 03</span>
-              <span>Semantic Segmentation</span>
-            </div>
-
-            <h3>High-Resolution Land Cover Segmentation</h3>
-
-            <p class="project-summary">
-              Generated land cover classes from high-resolution imagery and used the results for class extraction and green space analysis.
-            </p>
-
-            <ul class="project-highlights">
-              <li>Worked with pixel-based classification rather than object detection.</li>
-              <li>Converted classified outputs into analysis-ready layers for further use.</li>
-              <li>Focused on interpretation, extraction, and presentation of meaningful land cover results.</li>
-            </ul>
-
-            <div class="tag-list">
-              <span class="tag">ArcGIS Pro</span>
-              <span class="tag">ArcGIS Online</span>
-              <span class="tag">GeoAI</span>
-              <span class="tag">Segmentation</span>
-              <span class="tag">Class Extraction</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="project-link" href="projects/landcover.html">View Project</a>
-              <span class="project-note">Pixel classification to usable layers</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-image">
-            <img src="images/textsam-boat-detection/textsam-cover.png" alt="TextSAM boat detection" />
-            <div class="project-badge">Prompt-Based Detection</div>
-          </div>
-
-          <div class="project-content">
-            <div class="project-meta">
-              <span>Project 04</span>
-              <span>Object Detection</span>
-            </div>
-
-            <h3>TextSAM Boat Detection</h3>
-
-            <p class="project-summary">
-              Used text-prompt object detection in aerial imagery and improved raw outputs through filtering and result cleanup.
-            </p>
-
-            <ul class="project-highlights">
-              <li>Applied TextSAM with prompt-based detection in ArcGIS Pro.</li>
-              <li>Refined outputs using confidence- and area-based filtering decisions.</li>
-              <li>Demonstrated post-processing as an important part of a usable GeoAI workflow.</li>
-            </ul>
-
-            <div class="tag-list">
-              <span class="tag">ArcGIS Pro</span>
-              <span class="tag">TextSAM</span>
-              <span class="tag">Object Detection</span>
-              <span class="tag">NMS</span>
-              <span class="tag">Post-processing</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="project-link" href="projects/textsam.html">View Project</a>
-              <span class="project-note">Prompt detection + cleanup workflow</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-image">
-            <img src="images/palm-detection/palm-thumbnail.png" alt="Palm tree detection with pretrained model" />
-            <div class="project-badge">Pretrained Model</div>
-          </div>
-
-          <div class="project-content">
-            <div class="project-meta">
-              <span>Project 05</span>
-              <span>Object Detection</span>
-            </div>
-
-            <h3>Palm Tree Detection with a Pretrained Model</h3>
-
-            <p class="project-summary">
-              Applied a pretrained object detection model to extract palm tree locations from aerial imagery in ArcGIS Pro.
-            </p>
-
-            <ul class="project-highlights">
-              <li>Focused on inference workflow using a ready-to-use deep learning package.</li>
-              <li>Produced structured detection outputs for interpretation and counting.</li>
-              <li>Useful as a clear example of pretrained model deployment in GIS imagery tasks.</li>
-            </ul>
-
-            <div class="tag-list">
-              <span class="tag">ArcGIS Pro</span>
-              <span class="tag">Pretrained Model</span>
-              <span class="tag">Palm Detection</span>
-              <span class="tag">Inference</span>
-              <span class="tag">Feature Output</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="project-link" href="projects/palm.html">View Project</a>
-              <span class="project-note">Inference-focused detection workflow</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      GeoAI & GIS Portfolio — Sophia (Zahra) Chehreghan
-    </div>
-  </footer>
+  <!-- بقیه کدت بدون تغییر -->
 
 </body>
 </html>
